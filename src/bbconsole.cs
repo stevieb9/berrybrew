@@ -82,6 +82,10 @@ namespace BBConsole
                     BB.ExecCompile(String.Join(" ", args).Trim());
                     break;
 
+                case "fetch":
+                    BB.PerlUpdateAvailableList();
+                    break;
+
                 case "install":
                     if (args.Length == 1)
                     {

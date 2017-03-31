@@ -10,8 +10,8 @@ versions of Strawberry Perl for Windows. There is no
 [requirement](https://github.com/stevieb9/berrybrew#requirements "berrybrew requirements")
 to have Strawberry Perl installed before using `berrybrew`.
 
-Adding and removing perls available is as simple as editing a JSON file,
-and works at runtime.
+Updating the list of Strawberry Perls available is as simple as runing a single
+command: `berrybrew fetch`, and works at runtime.
 
 There is extensive documentation available for the
 [berrybrew](https://github.com/stevieb9/berrybrew/blob/master/doc/berrybrew.md)
@@ -27,7 +27,7 @@ full list of documentation.
 - [Commands](#commands)
 - [Synopsis](#synopsis)
 - [Upgrading](#upgrading)
-- [Add/Remove Perls Available](#addremove-perls-available)
+- [Update Perls Available](#update-perls-available)
 - [Configure Perl Instance Directory](#configure-root-directory)
 - [Compile Your Own](#compile-your-own)
 - [Create a Release](#create-a-release)
@@ -46,7 +46,7 @@ full list of documentation.
 
 ##### Pre-built zip archive
 
-[berrybrew.zip](https://github.com/stevieb9/berrybrew/blob/master/download/berrybrew.zip?raw=true "berrybrew zip archive") `SHA1: e80f7e8a6fd1556dae1393cb68d0a50639040e3b`
+[berrybrew.zip](https://github.com/stevieb9/berrybrew/blob/master/download/berrybrew.zip?raw=true "berrybrew zip archive") `SHA1: 39c3d64ce8082399e6c284e4596871657d32c565`
 
 You can also [Compile your own](https://github.com/stevieb9/berrybrew#configure-root-directory)
 installation.
@@ -68,6 +68,7 @@ will reside.
         config      Add berrybrew to your PATH
         clean *     Remove all temporary berrybrew files
         clone       Clones an installed version to a custom-named one
+        fetch       Upgrade the list of Strawberry Perl instances available
         install     Download, extract and install a Strawberry Perl
         remove      Uninstall a Strawberry Perl
         switch      Switch to use a different Strawberry Perl
@@ -83,28 +84,25 @@ will reside.
 
 ## Synopsis
 
-List all available versions of Perl:
+List all available versions of Perl that are available:
     
     > berrybrew available
 
     The following Strawberry Perls are available:
     
-            5.24.1_64     [installed]
-            5.24.1_32     [installed]
-            5.24.0_64
-            5.24.0_64_PDL
-            5.24.0_32
-            5.22.3_64     [installed] 
-            5.22.3_32
-            5.22.2_64
-            5.22.2_64_PDL
-            5.22.2_32
-            5.22.1_64
-            5.22.1_32
+    > berrybrew available
+
+    The following Strawberry Perls are available:
+
+            5.24.1_64          [installed] *
+            5.24.1_64_PDL
+            5.24.1_32
+            5.22.3_64
+            5.22.3_64_PDL
+            5.22.3_32          [installed]
             5.20.3_64
             5.20.3_64_PDL
             5.20.3_32
-            5.20.3_32_PDL
             5.18.4_64
             5.18.4_32
             5.16.3_64
@@ -113,11 +111,12 @@ List all available versions of Perl:
             5.14.4_32
             5.12.3_32
             5.10.1_32
-            unit_test-5.18  [custom] [installed] *
-            projectX        [custom] [installed]
+            5.8.9_32           [installed]
+            5.8.9-unit_tests   [custom] [installed]
+            client_project_X   [custom] [installed]
 
     * Currently using
-
+    
 Install a specific version:
 
     > berrybrew install 5.24.1_64
@@ -212,16 +211,19 @@ Easiest way is to use `berrybrew upgrade`. This requires Git to be
 installed and in your `PATH`. It will create a `backup_timestamp`
 directory and copy your configuration files into it.
 
-After completion, it'll copy your config files back to the proper `data`
-directory.
+After completion, it'll copy your `perls_custom.json` file back into the `data/`
+directory. The rest of the configuration JSON files will be replaced. If you had
+any customizations within any of the other configuration files, you'll need to
+manually merge those changes back into the updated config file in `data/`.
 
 Doing a straight `git pull` will overwrite your configuration files, so
 back them up first (see [Caveats](#caveats)).
 
-## Add/Remove Perls Available
+## Update Perls Available
 
-Simply edit the `data/perls.json` file in the repository's root 
-directory.
+Use `berrybrew fetch` to retrieve the most recent availability list from
+Strawberry Perl. If any new or changed versions are found, we'll update the
+local `perls.json` file with them.
 
 ## Configure Root Directory
 
@@ -254,7 +256,7 @@ If you choose to ignore this, follow this procedure:
     mcs \
         -lib:bin \
         -t:library \
-        -r:Ionic.Zip.dll,Newtonsoft.Json.dll 
+        -r:Newtonsoft.Json.dll,ICSharpCode.SharpZipLib.dll \ 
         -out:bin/bbapi.dll \
         src/berrybrew.cs
 
@@ -343,7 +345,7 @@ operate correctly. This is due to the way Windows forces the System
 
 ## Version
 
-    1.10
+    1.12
 
 ## Original Author
 
