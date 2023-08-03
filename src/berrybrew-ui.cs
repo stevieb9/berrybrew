@@ -12,6 +12,8 @@ using System.Windows.Forms;
 public class BBUI : System.Windows.Forms.Form {
     private Berrybrew bb = new Berrybrew();
 
+    private dynamic uiConfig;
+    
     private System.Windows.Forms.NotifyIcon trayIcon;
     private System.Windows.Forms.ContextMenu contextMenu;
     private System.Windows.Forms.MenuItem rightClickExit;
@@ -53,6 +55,8 @@ public class BBUI : System.Windows.Forms.Form {
 
     public BBUI() {
 
+        this.uiConfig = bb.JsonParse("ui");
+        
         this.components = new System.ComponentModel.Container();
         this.contextMenu = new System.Windows.Forms.ContextMenu();
         this.rightClickExit = new System.Windows.Forms.MenuItem();
