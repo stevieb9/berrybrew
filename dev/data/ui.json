@@ -1,13 +1,105 @@
 ﻿{
-  "ui_object": {
-    "client_size": [265, 325]
-  },
-  "currentPerlLabel": {
-    "type": "label",
-    "autosize": true,
-    "location": [10, 10],
-    "name": ["currentPerlLabel"],
-    "size": [35, 35],
-    "tab_index": 0
-  }
+    "ui_object": {
+        "client_size": [265, 325],
+        "trayicon_text": "berrybrew UI"
+    },
+    "label": {
+        "currentPerl": {
+            "name": "BBUI",
+            "location": [10, 10],
+            "size": [35, 35],
+            "autosize": true,
+            "tabindex": 0
+        }
+    },
+    "button": {
+        "perlOpen": {
+            "name": "perlOpenButton",
+            "text": "Open",
+            "location": [169, 10],
+            "size": [45, 20],
+            "tabindex": 1
+        },
+        "perlOff": {
+            "name": "perlOffButton",
+            "text": "Off",
+            "location": [215, 10],
+            "size": [35, 20],
+            "tabindex": 1           
+        },
+        "perlInstall": {
+            "name": "perlInstallButton",
+            "text": "Install",
+            "location": [139, 65],
+            "size": [75, 23],
+            "tabindex": 1
+        },
+        "perlSwitch": {
+            "name": "perlSwitchButton",
+            "text": "Switch",
+            "location": [139, 35],
+            "size": [75, 23],
+            "tabindex": 1
+        },
+        "perlUse": {
+            "name": "perlUseButton",
+            "text": "Use",
+            "location": [139, 95],
+            "size": [75, 23],
+            "tabindex": 1
+        },
+        "perlRemove": {
+            "name": "perlRemoveButton",
+            "text": "Remove",
+            "location": [139, 125],
+            "size": [75, 23],
+            "tabindex": 1
+        },       
+        "perlClone": {
+            "name": "perlCloneButton",
+            "text": "Clone",
+            "location": [139, 155],
+            "size": [75, 23],
+            "tabindex": 1
+        },
+        "perlFetch": {
+            "name": "perlFetchButton",
+            "text": "Fetch",
+            "location": [10, 185],
+            "size": [75, 23],
+            "tabindex": 1
+        }
+    },
+    "checkbox": {
+        "debug": {
+            "text": "Debug",
+            "location": [10, 215],
+            "width": 200,
+            "autosize": true
+        },
+        "powershell": {
+            "text": "Use Powershell",
+            "location": [10, 235],
+            "width": 200,
+            "autosize": true
+        },
+        "fileAssoc": {
+            "text": "Manage file association",
+            "location": [10, 255],
+            "width": 200,
+            "autosize": true
+        },
+        "warnOrphans": {
+            "text": "Warn on orphans",
+            "location": [10, 275],
+            "width": 200,
+            "autosize": true
+        },
+        "windowsHomedir": {
+            "text": "Windows homedir",
+            "location": [10, 295],
+            "width": 200,
+            "autosize": true           
+        }
+    }
 }
