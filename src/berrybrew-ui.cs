@@ -17,6 +17,7 @@ public class BBUI : System.Windows.Forms.Form {
     private System.Windows.Forms.MenuItem rightClickExit;
 
     private Label currentPerlLabel;
+
     private Button perlOpenButton;
     private Button perlOffButton;
 
@@ -64,7 +65,7 @@ public class BBUI : System.Windows.Forms.Form {
         this.rightClickExit.Text = "Exit";
         this.rightClickExit.Click += new System.EventHandler(this.rightClickExit_Click);
 
-        this.ClientSize = new System.Drawing.Size(240, 100);
+        this.ClientSize = new System.Drawing.Size(265, 325);
         this.Text = "berrybrew UI";
 
         this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -97,6 +98,7 @@ public class BBUI : System.Windows.Forms.Form {
 
     private void InitializeComponents() {
         this.InitializeCurrentPerlLabel();
+
         this.InitializePerlOpenButton();
         this.InitializePerlOffButton();
 
@@ -135,7 +137,6 @@ public class BBUI : System.Windows.Forms.Form {
         this.currentPerlLabel.TabIndex = 0;
         this.currentPerlLabel.Font = new Font(this.Font, FontStyle.Bold);
 
-        this.ClientSize = new System.Drawing.Size(284, 261);
         this.Controls.Add(this.currentPerlLabel);
         this.Name = "BBUI";
         this.ResumeLayout(false);
@@ -646,9 +647,7 @@ public class BBUI : System.Windows.Forms.Form {
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-
-        this.ClientSize = new System.Drawing.Size(265, 325);
-
+        
         if (bb.PerlOp.PerlInUse().Name != null) {
             this.Controls.Add(this.perlOpenButton);
         }
