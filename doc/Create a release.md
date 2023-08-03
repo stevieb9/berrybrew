@@ -79,8 +79,8 @@ into the master branch
     - `git push --tags`
     
 - Update David Farrell's `berrybrew` repository:
-
-    - `git clone https://stevieb9@github.com/dnmfarrell/berrybrew bb-dnm`
+ 
+    - `git clone git@github.com:dnmfarrell/berrybrew bb-dnm`
     - `cd bb-dnm`
     - `git remote add stevieb9 https://github.com/stevieb9/berrybrew`
     - `git pull stevieb9 master`
