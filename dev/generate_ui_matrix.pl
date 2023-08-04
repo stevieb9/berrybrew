@@ -13,6 +13,17 @@ my $data = _parse_config($ui_conf_file);
 
 window_display();
 
+sub buttons {
+    my $button_conf = $data->{button};
+
+    my @buttons;
+
+    for (keys %$button_conf) {
+        push @buttons, $button_conf->{$_};
+    }
+
+    return @buttons;
+}
 sub labels {
     my $label_conf = $data->{label};
 
@@ -24,16 +35,16 @@ sub labels {
 
     return @labels;
 }
-sub buttons {
-    my $button_conf = $data->{button};
+sub checkboxes {
+    my $checkboxes_conf = $data->{checkbox};
 
-    my @buttons;
+    my @checkboxes;
 
-    for (keys %$button_conf) {
-        push @buttons, $button_conf->{$_};
+    for (keys %$checkboxes_conf) {
+        push @checkboxes, $checkboxes_conf->{$_};
     }
 
-    return @buttons;
+    return @checkboxes;
 }
 sub comboboxes {
     my $combobox_conf = $data->{combobox};
@@ -57,6 +68,18 @@ sub window_display {
     $mw->g_wm_title("BB UI Simulator");
     $mw->g_wm_minsize(window_size());
 
+    # Button
+
+    for my $button_conf (buttons()) {
+        my $button = $mw->new_button(-text => $button_conf->{text});
+        $button->g_place(
+            -width  => $button_conf->{size}[0],
+            -height => $button_conf->{size}[1],
+            -x      => $button_conf->{location}[0],
+            -y      => $button_conf->{location}[1]
+        );
+    }
+
     # Labels
 
     for my $label_conf (labels()) {
@@ -69,15 +92,16 @@ sub window_display {
         );
     }
 
-    # Button
+    # Checkboxes
 
-    for my $button_conf (buttons()) {
-        my $button = $mw->new_button(-text => $button_conf->{text});
-        $button->g_place(
-            -width  => $button_conf->{size}[0],
-            -height => $button_conf->{size}[1],
-            -x      => $button_conf->{location}[0],
-            -y      => $button_conf->{location}[1]
+    for my $checkbox_conf (checkboxes()) {
+        my $checkbox = $mw->new_ttk__checkbutton(
+            -text  => $checkbox_conf->{text}
+        );
+        $checkbox->g_place(
+            -width      => $checkbox_conf->{width},
+            -x          => $checkbox_conf->{location}[0],
+            -y          => $checkbox_conf->{location}[1]
         );
     }
 
@@ -92,6 +116,7 @@ sub window_display {
             -y      => $combobox_conf->{location}[1]
         );
     }
+
     Tkx::MainLoop();
 }
 
