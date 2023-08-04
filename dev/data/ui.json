@@ -6,6 +6,7 @@
     "label": {
         "currentPerl": {
             "name": "BBUI",
+            "text": "5.30.0",
             "location": [10, 10],
             "size": [35, 35],
             "autosize": true,
@@ -112,40 +113,46 @@
         }
     },
     "combobox": {
-        "perlInstall": {
-            "name": "perlInstallSelect",
-            "location": [10, 65],
-            "size": [121, 30],
-            "formatting_enabled": true,
-            "tabindex": 0
-        },
         "perlSwitch": {
             "name": "perlSwitchSelect",
             "location": [10, 35],
             "size": [121, 30],
             "formatting_enabled": true,
-            "tabindex": 0
+            "tabindex": 0,
+            "index": 1
         },
+        "perlInstall": {
+            "name": "perlInstallSelect",
+            "location": [10, 65],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0,
+            "index": 2
+        },
+
         "perlUse": {
             "name": "perlUseSelect",
             "location": [10, 95],
             "size": [121, 30],
             "formatting_enabled": true,
-            "tabindex": 0
+            "tabindex": 0,
+            "index": 3
         },
         "perlRemove": {
             "name": "perlRemoveSelect",
             "location": [10, 125],
             "size": [121, 30],
             "formatting_enabled": true,
-            "tabindex": 0
+            "tabindex": 0,
+            "index": 4
         },
         "perlClone": {
             "name": "perlCloneSelect",
             "location": [10, 155],
             "size": [121, 30],
             "formatting_enabled": true,
-            "tabindex": 0
+            "tabindex": 0,
+            "index": 5
         }
     }
 }
