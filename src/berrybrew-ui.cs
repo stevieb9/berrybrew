@@ -49,7 +49,7 @@ public class BBUI : System.Windows.Forms.Form {
     private System.ComponentModel.IContainer components;
 
     [STAThread]
-   static void Main() {
+    static void Main() {
         Application.Run(new BBUI());
     }
 

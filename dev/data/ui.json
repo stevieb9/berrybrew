@@ -1,4 +1,4 @@
-﻿{
+{
     "ui_object": {
         "client_size": [265, 325],
         "trayicon_text": "berrybrew UI"
@@ -9,7 +9,8 @@
             "location": [10, 10],
             "size": [35, 35],
             "autosize": true,
-            "tabindex": 0
+            "tabindex": 0,
+            "index": 1
         }
     },
     "button": {
@@ -18,56 +19,64 @@
             "text": "Open",
             "location": [169, 10],
             "size": [45, 20],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 1
         },
         "perlOff": {
             "name": "perlOffButton",
             "text": "Off",
             "location": [215, 10],
             "size": [35, 20],
-            "tabindex": 1           
-        },
-        "perlInstall": {
-            "name": "perlInstallButton",
-            "text": "Install",
-            "location": [139, 65],
-            "size": [75, 23],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 2
         },
         "perlSwitch": {
             "name": "perlSwitchButton",
             "text": "Switch",
             "location": [139, 35],
             "size": [75, 23],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 3
+        },
+        "perlInstall": {
+            "name": "perlInstallButton",
+            "text": "Install",
+            "location": [139, 65],
+            "size": [75, 23],
+            "tabindex": 1,
+            "index": 4
         },
         "perlUse": {
             "name": "perlUseButton",
             "text": "Use",
             "location": [139, 95],
             "size": [75, 23],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 5
         },
         "perlRemove": {
             "name": "perlRemoveButton",
             "text": "Remove",
             "location": [139, 125],
             "size": [75, 23],
-            "tabindex": 1
-        },       
+            "tabindex": 1,
+            "index": 6
+        },
         "perlClone": {
             "name": "perlCloneButton",
             "text": "Clone",
             "location": [139, 155],
             "size": [75, 23],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 7
         },
         "perlFetch": {
             "name": "perlFetchButton",
             "text": "Fetch",
             "location": [10, 185],
             "size": [75, 23],
-            "tabindex": 1
+            "tabindex": 1,
+            "index": 8
         }
     },
     "checkbox": {
@@ -99,7 +108,7 @@
             "text": "Windows homedir",
             "location": [10, 295],
             "width": 200,
-            "autosize": true           
+            "autosize": true
         }
     },
     "combobox": {
@@ -139,5 +148,4 @@
             "tabindex": 0
         }
     }
-            
 }
