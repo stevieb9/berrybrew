@@ -101,5 +101,43 @@
             "width": 200,
             "autosize": true           
         }
+    },
+    "combobox": {
+        "perlInstall": {
+            "name": "perlInstallSelect",
+            "location": [10, 65],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0
+        },
+        "perlSwitch": {
+            "name": "perlSwitchSelect",
+            "location": [10, 35],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0
+        },
+        "perlUse": {
+            "name": "perlUseSelect",
+            "location": [10, 95],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0
+        },
+        "perlRemove": {
+            "name": "perlRemoveSelect",
+            "location": [10, 125],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0
+        },
+        "perlClone": {
+            "name": "perlCloneSelect",
+            "location": [10, 155],
+            "size": [121, 30],
+            "formatting_enabled": true,
+            "tabindex": 0
+        }
     }
+            
 }

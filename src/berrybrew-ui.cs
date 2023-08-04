@@ -58,8 +58,8 @@ public class BBUI : System.Windows.Forms.Form {
         Conf = bb.JsonParse("ui");
 
         ClientSize = new System.Drawing.Size(
-            (int)Conf["ui_object"]["client_size"][0], 
-            (int)Conf["ui_object"]["client_size"][1]
+            (int) Conf["ui_object"]["client_size"][0], 
+            (int) Conf["ui_object"]["client_size"][1]
         );
         Text = "berrybrew UI";
        
@@ -143,13 +143,13 @@ public class BBUI : System.Windows.Forms.Form {
 
         currentPerlLabel.AutoSize = data["autosize"];
         currentPerlLabel.Location = new System.Drawing.Point(
-            (int)data["location"][0], 
-            (int)data["location"][1]
+            (int) data["location"][0], 
+            (int) data["location"][1]
         );
         currentPerlLabel.Name = name;
         currentPerlLabel.Size = new System.Drawing.Size(
-            (int)data["size"][0],
-            (int)data["size"][1]
+            (int) data["size"][0],
+            (int) data["size"][1]
         );
         currentPerlLabel.TabIndex = data["tabindex"];
         currentPerlLabel.Font = new Font(Font, FontStyle.Bold);
@@ -180,8 +180,8 @@ public class BBUI : System.Windows.Forms.Form {
 
         fileAssocCheckBox.Text = data["text"];
         fileAssocCheckBox.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         fileAssocCheckBox.Width = data["width"];
         fileAssocCheckBox.AutoSize = data["autosize"];
@@ -221,8 +221,8 @@ public class BBUI : System.Windows.Forms.Form {
         warnOrphansCheckBox = new System.Windows.Forms.CheckBox();
         warnOrphansCheckBox.Text = data["text"];
         warnOrphansCheckBox.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         warnOrphansCheckBox.Width = data["width"];
         warnOrphansCheckBox.AutoSize = data["autosize"];
@@ -256,8 +256,8 @@ public class BBUI : System.Windows.Forms.Form {
         debugCheckBox = new System.Windows.Forms.CheckBox();
         debugCheckBox.Text = data["text"];
         debugCheckBox.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         debugCheckBox.Width = data["width"];
         debugCheckBox.AutoSize = data["autosize"];
@@ -287,8 +287,8 @@ public class BBUI : System.Windows.Forms.Form {
         powershellCheckBox = new System.Windows.Forms.CheckBox();
         powershellCheckBox.Text = data["text"];
         powershellCheckBox.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         powershellCheckBox.Width = data["width"];
         powershellCheckBox.AutoSize = data["autosize"];
@@ -318,8 +318,8 @@ public class BBUI : System.Windows.Forms.Form {
         windowsHomedirCheckBox = new System.Windows.Forms.CheckBox();
         windowsHomedirCheckBox.Text = data["text"];
         windowsHomedirCheckBox.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         windowsHomedirCheckBox.Width = data["width"];
         windowsHomedirCheckBox.AutoSize = data["autosize"];
@@ -351,12 +351,12 @@ public class BBUI : System.Windows.Forms.Form {
         perlOpenButton.Name = data["name"];
         perlOpenButton.Text = data["text"];
         perlOpenButton.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         perlOpenButton.Size = new System.Drawing.Size(
-            (int)data["size"][0],
-            (int)data["size"][1]
+            (int) data["size"][0],
+            (int) data["size"][1]
         );
         perlOpenButton.TabIndex = data["tabindex"];
         perlOpenButton.UseVisualStyleBackColor = true;
@@ -388,12 +388,12 @@ public class BBUI : System.Windows.Forms.Form {
         perlOffButton.Name = data["name"];
         perlOffButton.Text = data["text"];
         perlOffButton.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         perlOffButton.Size = new System.Drawing.Size(
-            (int)data["size"][0],
-            (int)data["size"][1]
+            (int) data["size"][0],
+            (int) data["size"][1]
         );
         perlOffButton.TabIndex = data["tabindex"];
         perlOffButton.UseVisualStyleBackColor = true;
@@ -424,8 +424,8 @@ public class BBUI : System.Windows.Forms.Form {
         perlInstallButton.Name = data["name"];
         perlInstallButton.Text = data["text"];
         perlInstallButton.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         perlInstallButton.Size = new System.Drawing.Size(
             (int) data["size"][0],
@@ -457,8 +457,8 @@ public class BBUI : System.Windows.Forms.Form {
         perlSwitchButton.Name = data["name"];
         perlSwitchButton.Text = data["text"];
         perlSwitchButton.Location = new System.Drawing.Point(
-            (int)data["location"][0],
-            (int)data["location"][1]
+            (int) data["location"][0],
+            (int) data["location"][1]
         );
         perlSwitchButton.Size = new System.Drawing.Size(
             (int) data["size"][0],
@@ -621,14 +621,23 @@ public class BBUI : System.Windows.Forms.Form {
 
     // Select - Install
     private void InitializePerlInstallSelect() {
+        string name = "perlInstall";
+        var data = Conf["combobox"][name];
+        
         perlInstallSelect = new System.Windows.Forms.ComboBox();
         perlInstallSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 
-        perlInstallSelect.FormattingEnabled = true;
-        perlInstallSelect.Location = new System.Drawing.Point(10, 65);
-        perlInstallSelect.Name = "perlSwitchSelect";
-        perlInstallSelect.Size = new System.Drawing.Size(121, 30);
-        perlInstallSelect.TabIndex = 0;
+        perlInstallSelect.Name = data["name"];
+        perlInstallSelect.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlInstallSelect.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlInstallSelect.FormattingEnabled = data["formatting_enabled"];
+        perlInstallSelect.TabIndex = data["tabindex"];
 
         foreach (string perlName in bb.AvailableList()) {
             perlInstallSelect.Items.Add(perlName );
@@ -646,14 +655,23 @@ public class BBUI : System.Windows.Forms.Form {
 
     // Select - Switch
     private void InitializePerlSwitchSelect() {
+        string name = "perlSwitch";
+        var data = Conf["combobox"][name];
+        
         perlSwitchSelect = new System.Windows.Forms.ComboBox();
         perlSwitchSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 
-        perlSwitchSelect.FormattingEnabled = true;
-        perlSwitchSelect.Location = new System.Drawing.Point(10, 35);
-        perlSwitchSelect.Name = "perlSwitchSelect";
-        perlSwitchSelect.Size = new System.Drawing.Size(121, 30);
-        perlSwitchSelect.TabIndex = 0;
+        perlSwitchSelect.Name = data["name"];
+        perlSwitchSelect.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlSwitchSelect.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlSwitchSelect.FormattingEnabled = data["formatting_enabled"];
+        perlSwitchSelect.TabIndex = data["tabindex"];
 
         string perlInUse = bb.PerlOp.PerlInUse().Name;
 
@@ -681,14 +699,23 @@ public class BBUI : System.Windows.Forms.Form {
 
     // Select - Use
     private void InitializePerlUseSelect() {
+        string name = "perlUse";
+        var data = Conf["combobox"][name];
+        
         perlUseSelect = new System.Windows.Forms.ComboBox();
         perlUseSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 
-        perlUseSelect.FormattingEnabled = true;
-        perlUseSelect.Location = new System.Drawing.Point(10, 95);
-        perlUseSelect.Name = "perlUseSelect";
-        perlUseSelect.Size = new System.Drawing.Size(121, 30);
-        perlUseSelect.TabIndex = 0;
+        perlUseSelect.Name = data["name"];
+        perlUseSelect.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlUseSelect.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlUseSelect.FormattingEnabled = data["formatting_enabled"];
+        perlUseSelect.TabIndex = data["tabindex"];
 
         foreach (StrawberryPerl perl in bb.PerlOp.PerlsInstalled()) {
             perlUseSelect.Items.Add(perl.Name );
@@ -705,14 +732,23 @@ public class BBUI : System.Windows.Forms.Form {
 
     // Select - Remove
     private void InitializePerlRemoveSelect() {
+        string name = "perlRemove";
+        var data = Conf["combobox"][name];
+        
         perlRemoveSelect = new System.Windows.Forms.ComboBox();
         perlRemoveSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 
-        perlRemoveSelect.FormattingEnabled = true;
-        perlRemoveSelect.Location = new System.Drawing.Point(10, 125);
-        perlRemoveSelect.Name = "perlRemoveSelect";
-        perlRemoveSelect.Size = new System.Drawing.Size(121, 30);
-        perlRemoveSelect.TabIndex = 0;
+        perlRemoveSelect.Name = data["name"];
+        perlRemoveSelect.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlRemoveSelect.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlRemoveSelect.FormattingEnabled = data["formatting_enabled"];
+        perlRemoveSelect.TabIndex = data["tabindex"];
 
         foreach (StrawberryPerl perl in bb.PerlOp.PerlsInstalled()) {
             perlRemoveSelect.Items.Add(perl.Name);
@@ -730,14 +766,23 @@ public class BBUI : System.Windows.Forms.Form {
 
     // Select - Clone
     private void InitializePerlCloneSelect() {
+        string name = "perlClone";
+        var data = Conf["combobox"][name];
+        
         perlCloneSelect = new System.Windows.Forms.ComboBox();
         perlCloneSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 
-        perlCloneSelect.FormattingEnabled = true;
-        perlCloneSelect.Location = new System.Drawing.Point(10, 155);
-        perlCloneSelect.Name = "perlCloneSelect";
-        perlCloneSelect.Size = new System.Drawing.Size(121, 30);
-        perlCloneSelect.TabIndex = 0;
+        perlCloneSelect.Name = data["name"];
+        perlCloneSelect.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlCloneSelect.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlCloneSelect.FormattingEnabled = data["formatting_enabled"];
+        perlCloneSelect.TabIndex = data["tabindex"];
 
         foreach (StrawberryPerl perl in bb.PerlOp.PerlsInstalled()) {
             perlCloneSelect.Items.Add(perl.Name);
