@@ -64,11 +64,26 @@ sub window_display {
     my $mw = Tkx::widget->new(".");
 
     # Window
-
     $mw->g_wm_title("BB UI Simulator");
     $mw->g_wm_minsize(window_size());
 
     # Button
+    _generate_buttons($mw);
+
+    # Checkboxes
+    _generate_checkboxes($mw);
+
+    # Comboboxex
+    _generate_comboboxes($mw);
+
+    # Labels
+    _generate_labels($mw);
+
+    Tkx::MainLoop();
+}
+
+sub _generate_buttons {
+    my ($mw) = @_;
 
     for my $button_conf (buttons()) {
         my $button = $mw->new_button(-text => $button_conf->{text});
@@ -79,20 +94,9 @@ sub window_display {
             -y      => $button_conf->{location}[1]
         );
     }
-
-    # Labels
-
-    for my $label_conf (labels()) {
-        my $label = $mw->new_label(-text => $label_conf->{text});
-        $label->g_place(
-            -width  => $label_conf->{size}[0],
-            -height => $label_conf->{size}[1],
-            -x      => $label_conf->{location}[0],
-            -y      => $label_conf->{location}[1]
-        );
-    }
-
-    # Checkboxes
+}
+sub _generate_checkboxes {
+    my ($mw) = @_;
 
     for my $checkbox_conf (checkboxes()) {
         my $checkbox = $mw->new_ttk__checkbutton(
@@ -104,8 +108,9 @@ sub window_display {
             -y          => $checkbox_conf->{location}[1]
         );
     }
-
-    # Combobox
+}
+sub _generate_comboboxes {
+    my ($mw) = @_;
 
     for my $combobox_conf (comboboxes()) {
         my $combobox = $mw->new_ttk__combobox(-values => [$combobox_conf->{name}]);
@@ -117,9 +122,21 @@ sub window_display {
         );
     }
 
-    Tkx::MainLoop();
 }
+sub _generate_labels {
+    my ($mw) = @_;
 
+    for my $label_conf (labels()) {
+        my $label = $mw->new_label(-text => $label_conf->{text});
+        $label->g_place(
+            -width  => $label_conf->{size}[0],
+            -height => $label_conf->{size}[1],
+            -x      => $label_conf->{location}[0],
+            -y      => $label_conf->{location}[1]
+        );
+    }
+
+}
 sub _parse_config {
     my ($file) = @_;
     local $/;
