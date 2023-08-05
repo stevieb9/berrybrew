@@ -6,9 +6,9 @@
     "label": {
         "currentPerl": {
             "name": "BBUI",
-            "text": "5.30.0",
+            "text": "Current Perl: None Configured",
             "location": [10, 10],
-            "size": [35, 35],
+            "size": [159, 20],
             "autosize": true,
             "tabindex": 0,
             "index": 1

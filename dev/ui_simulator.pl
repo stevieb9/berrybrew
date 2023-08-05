@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use warnings;
 use strict;
 
@@ -8,8 +10,11 @@ use Tkx;
 # NOTE: If a UTF error occurs reading the JSON, open the conf
 # file up in vi and execute: ':set nobomb'
 
+my $mw;
+
 my $ui_conf_file = 'dev/data/ui.json';
 my $data = _parse_config($ui_conf_file);
+my $font_size = 11;
 
 window_display();
 
@@ -61,7 +66,9 @@ sub window_size {
     return @{ $data->{ui_object}{client_size} };
 }
 sub window_display {
-    my $mw = Tkx::widget->new(".");
+    $data = _parse_config($ui_conf_file);
+
+    $mw = Tkx::widget->new(".");
 
     # Window
     $mw->g_wm_title("BB UI Simulator");
@@ -86,7 +93,14 @@ sub _generate_buttons {
     my ($mw) = @_;
 
     for my $button_conf (buttons()) {
-        my $button = $mw->new_button(-text => $button_conf->{text});
+        my $button = $mw->new_button(
+            -text    => $button_conf->{text},
+            -font    => [ -size => $font_size ],
+            -command => sub {
+                $mw->DESTROY;
+                window_display();
+            }
+        );
         $button->g_place(
             -width  => $button_conf->{size}[0],
             -height => $button_conf->{size}[1],
@@ -99,8 +113,10 @@ sub _generate_checkboxes {
     my ($mw) = @_;
 
     for my $checkbox_conf (checkboxes()) {
-        my $checkbox = $mw->new_ttk__checkbutton(
-            -text  => $checkbox_conf->{text}
+        my $checkbox = $mw->new_checkbutton(
+            -text   => $checkbox_conf->{text},
+            -font   => [ -size => $font_size ],
+            -anchor => 'w'
         );
         $checkbox->g_place(
             -width      => $checkbox_conf->{width},
@@ -113,7 +129,9 @@ sub _generate_comboboxes {
     my ($mw) = @_;
 
     for my $combobox_conf (comboboxes()) {
-        my $combobox = $mw->new_ttk__combobox(-values => [$combobox_conf->{name}]);
+        my $combobox = $mw->new_ttk__combobox(
+            -values  => [ $combobox_conf->{name} ],
+        );
         $combobox->g_place(
             -width  => $combobox_conf->{size}[0],
             -height => $combobox_conf->{size}[1],
@@ -121,13 +139,17 @@ sub _generate_comboboxes {
             -y      => $combobox_conf->{location}[1]
         );
     }
-
 }
 sub _generate_labels {
     my ($mw) = @_;
 
     for my $label_conf (labels()) {
-        my $label = $mw->new_label(-text => $label_conf->{text});
+        my $label = $mw->new_label(
+            -text => $label_conf->{text},
+            -font => [
+                -size   => $font_size,
+            ]
+        );
         $label->g_place(
             -width  => $label_conf->{size}[0],
             -height => $label_conf->{size}[1],
@@ -135,7 +157,6 @@ sub _generate_labels {
             -y      => $label_conf->{location}[1]
         );
     }
-
 }
 sub _parse_config {
     my ($file) = @_;
