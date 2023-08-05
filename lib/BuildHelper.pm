@@ -268,10 +268,14 @@ sub update_installer_script {
 
 # UI
 
+
 sub ui_change_element_block_location {
     my ($config, $element_type, $direction, $pixels) = @_;
 
-    if (! $config && ! $element_type && ! $direction && ! $pixels) {
+    # Moves all elements of a certain type up or down
+    # RETURN: The updated configuration data struct
+
+    if (! $config || ! $element_type || ! $direction || ! defined $pixels) {
         die "Need to send in the config hash, element type, 'up' or 'down' and the number of pixels"; }; if ($direction ne 'up' && $direction ne 'down') {
         die "\$direction parameter needs to be 'up' or 'down'";
     }
@@ -282,17 +286,15 @@ sub ui_change_element_block_location {
     my $data = $config->{$element_type};
 
     for (keys %$data) {
-        print "$_:\n\t$data->{$_}{location}[1]\n";
-
         if ($direction eq 'up') {
             $data->{$_}{location}[1] += $pixels;
-            print "\t$data->{$_}{location}[1]\n";
         }
         else {
             $data->{$_}{location}[1] -= $pixels;
-            print "\t$data->{$_}{location}[1]\n";
         }
     }
+
+    return $config;
 }
 
 # Private

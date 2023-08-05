@@ -1,6 +1,11 @@
 use warnings;
 use strict;
 
+# move_element_block.pl
+
+# Moves all elements of a certain type up or down within the UI
+# and then updates the UI configuration file
+
 use FindBin qw($RealBin);
 use lib "$RealBin/../../lib";
 
@@ -15,7 +20,7 @@ GetOptions (
     'p|pixels=s'    => \$pixels,
 );
 
-if (! $element_type || ! $direction || ! $pixels) {
+if (! $element_type || ! $direction || ! defined $pixels) {
     help();
 }
 if ($direction !~ /(?:up|down)/) {
@@ -38,12 +43,17 @@ if (! grep { $element_type eq $_ } grep { $_ !~ /^ui_/ } keys %$data) {
     exit;
 }
 
-BuildHelper::ui_change_element_block_location(
+$data = BuildHelper::ui_change_element_block_location(
     $data,
     $element_type,
     $direction,
     $pixels
 );
+
+BuildHelper::config_write($ui_conf_file, $data);
+
+print "\nUpdated the '$ui_conf_file' with the updated element locations\n\n";
+
 sub help {
     print qq{
         Parameters:
