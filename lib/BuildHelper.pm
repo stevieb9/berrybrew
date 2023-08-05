@@ -288,10 +288,10 @@ sub ui_change_element_block_location {
 
     for (keys %$data) {
         if ($direction eq 'up') {
-            $data->{$_}{location}[1] += $pixels;
+            $data->{$_}{location}[1] -= $pixels;
         }
         else {
-            $data->{$_}{location}[1] -= $pixels;
+            $data->{$_}{location}[1] += $pixels;
         }
     }
 
@@ -307,6 +307,12 @@ sub ui_window_size {
     if (! defined $x && ! defined $y) {
         return _ui_current_window_size($config);
     }
+    else {
+        $config->{ui_object}{client_size}[0] = $x;
+        $config->{ui_object}{client_size}[1] = $y;
+    }
+
+    return $config;
 }
 
 # Private
