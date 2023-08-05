@@ -6,8 +6,11 @@ use strict;
 # environments have in common.
 
 use Exporter qw(import);
+use JSON;
 
 our @EXPORT_OK = qw(
+    config_read
+    config_write
     check_installer_manifest
     update_installer_script
     create_installer
@@ -15,6 +18,24 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
+
+# Common
+
+sub config_read {
+    my ($file) = @_;
+    local $/;
+    open my $fh, '<', $file or die $!;
+    my $json = <$fh>;
+    return decode_json $json;
+}
+sub config_write {
+    my ($file, $data) = @_;
+    open my $wfh, '>', $file or die $!;
+    my $json = JSON->new->pretty->encode($data);
+    print $wfh $json;
+}
+
+# Installer
 
 sub create_installer {
     my ($installer_script) = @_;
@@ -243,6 +264,37 @@ sub update_installer_script {
 
     close $wfh;
 }
+
+# UI
+
+sub ui_change_element_block_location {
+    my ($config, $element_type, $direction, $pixels) = @_;
+
+    if (! $config && ! $element_type && ! $direction && ! $pixels) {
+        die "Need to send in the config hash, element type, 'up' or 'down' and the number of pixels"; }; if ($direction ne 'up' && $direction ne 'down') {
+        die "\$direction parameter needs to be 'up' or 'down'";
+    }
+    if ($pixels !~ /^\d+$/) {
+        die "\$pixels param needs to be an unsigned integer";
+    }
+
+    my $data = $config->{$element_type};
+
+    for (keys %$data) {
+        print "$_:\n\t$data->{$_}{location}[1]\n";
+
+        if ($direction eq 'up') {
+            $data->{$_}{location}[1] += $pixels;
+            print "\t$data->{$_}{location}[1]\n";
+        }
+        else {
+            $data->{$_}{location}[1] -= $pixels;
+            print "\t$data->{$_}{location}[1]\n";
+        }
+    }
+}
+
+# Private
 
 sub _berrybrew_version {
     open my $fh, '<', 'src/berrybrew.cs' or die $!;

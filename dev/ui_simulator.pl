@@ -1,9 +1,14 @@
 use warnings;
 use strict;
 
+use FindBin qw($RealBin);
+use lib "$RealBin/../lib";
+
+use BuildHelper qw(:all);
 use Data::Dumper;
 use JSON;
 use Tkx;
+
 
 # NOTE: If a UTF error occurs reading the JSON, open the conf
 # file up in vi and execute: ':set nobomb'
@@ -13,7 +18,7 @@ use Tkx;
 # the UI live time while making changes to the UI config file
 
 my $ui_conf_file = 'dev/data/ui.json';
-my $data = _parse_config($ui_conf_file);
+my $data = BuildHelper::config_read($ui_conf_file);
 my $font_size = $data->{ui_simulator}{font_size};
 
 my $mw;
@@ -65,7 +70,7 @@ sub labels {
     return @labels;
 }
 sub window_create_and_display {
-    $data = _parse_config($ui_conf_file);
+    $data = BuildHelper::config_read($ui_conf_file);
     $font_size = $data->{ui_simulator}{font_size};
 
     $mw = Tkx::widget->new(".");
@@ -150,13 +155,6 @@ sub _generate_labels {
             -y      => $label_conf->{location}[1]
         );
     }
-}
-sub _parse_config {
-    my ($file) = @_;
-    local $/;
-    open my $fh, '<', $ui_conf_file or die $!;
-    my $json = <$fh>;
-    return decode_json $json;
 }
 sub _window_size {
     return @{ $data->{ui_object}{client_size} };
