@@ -3,7 +3,8 @@ use strict;
 
 # move_element_block.pl
 
-# Moves all elements of a certain type up or down within the UI
+# Moves all elements of a certain type up or down within the UI,
+# asks the user if they'd like to expand the main window size,
 # and then updates the UI configuration file
 
 use FindBin qw($RealBin);
@@ -49,6 +50,16 @@ $data = BuildHelper::ui_change_element_block_location(
     $direction,
     $pixels
 );
+
+if ($direction eq 'down') {
+    print "\nWould you like to expand the size of the main window by '$pixels' pixels [y|n]?";
+    my $input = <>;
+
+    if ($input =~ /(?:y|Y/) {
+        my @window_size = BuildHelper::ui_window_size($data);
+        $window_size[1] += $pixels;
+    }
+}
 
 BuildHelper::config_write($ui_conf_file, $data);
 

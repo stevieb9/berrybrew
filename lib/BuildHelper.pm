@@ -14,6 +14,7 @@ our @EXPORT_OK = qw(
     config_write
     create_installer
     ui_change_element_block_location
+    ui_window_size
     update_installer_script
 );
 our %EXPORT_TAGS = (
@@ -296,6 +297,17 @@ sub ui_change_element_block_location {
 
     return $config;
 }
+sub ui_window_size {
+    my ($config, $x, $y) = @_;
+
+    if (! $config) {
+        die "Need UI configuration hash as param";
+    }
+
+    if (! defined $x && ! defined $y) {
+        return _ui_current_window_size($config);
+    }
+}
 
 # Private
 
@@ -320,4 +332,8 @@ sub _berrybrew_version {
     close $fh;
 
     return $ver;
+}
+sub _ui_current_window_size {
+    my ($config) = @_;
+    return @{ $config->{ui_object}{client_size} };
 }
