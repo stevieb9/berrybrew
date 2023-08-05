@@ -1,5 +1,3 @@
-#!/usr/bin/env perl
-
 use warnings;
 use strict;
 
@@ -10,13 +8,17 @@ use Tkx;
 # NOTE: If a UTF error occurs reading the JSON, open the conf
 # file up in vi and execute: ':set nobomb'
 
-my $mw;
+# NOTE: All buttons have a command that will destroy the existing
+# window and recreate it from scratch. This allows us to auto-refresh
+# the UI live time while making changes to the UI config file
 
 my $ui_conf_file = 'dev/data/ui.json';
 my $data = _parse_config($ui_conf_file);
-my $font_size = 11;
+my $font_size = $data->{ui_simulator}{font_size};
 
-window_display();
+my $mw;
+
+window_create_and_display();
 
 sub buttons {
     my $button_conf = $data->{button};
@@ -28,17 +30,6 @@ sub buttons {
     }
 
     return @buttons;
-}
-sub labels {
-    my $label_conf = $data->{label};
-
-    my @labels;
-
-    for (keys %$label_conf) {
-        push @labels, $label_conf->{$_};
-    }
-
-    return @labels;
 }
 sub checkboxes {
     my $checkboxes_conf = $data->{checkbox};
@@ -62,19 +53,28 @@ sub comboboxes {
 
     return @comboboxes;
 }
-sub window_size {
-    return @{ $data->{ui_object}{client_size} };
+sub labels {
+    my $label_conf = $data->{label};
+
+    my @labels;
+
+    for (keys %$label_conf) {
+        push @labels, $label_conf->{$_};
+    }
+
+    return @labels;
 }
-sub window_display {
+sub window_create_and_display {
     $data = _parse_config($ui_conf_file);
+    $font_size = $data->{ui_simulator}{font_size};
 
     $mw = Tkx::widget->new(".");
 
     # Window
     $mw->g_wm_title("BB UI Simulator");
-    $mw->g_wm_minsize(window_size());
+    $mw->g_wm_minsize(_window_size());
 
-    # Button
+    # Buttons
     _generate_buttons($mw);
 
     # Checkboxes
@@ -86,19 +86,18 @@ sub window_display {
     # Labels
     _generate_labels($mw);
 
+    # Deploy
     Tkx::MainLoop();
 }
 
 sub _generate_buttons {
-    my ($mw) = @_;
-
     for my $button_conf (buttons()) {
         my $button = $mw->new_button(
             -text    => $button_conf->{text},
             -font    => [ -size => $font_size ],
             -command => sub {
                 $mw->DESTROY;
-                window_display();
+                window_create_and_display();
             }
         );
         $button->g_place(
@@ -110,8 +109,6 @@ sub _generate_buttons {
     }
 }
 sub _generate_checkboxes {
-    my ($mw) = @_;
-
     for my $checkbox_conf (checkboxes()) {
         my $checkbox = $mw->new_checkbutton(
             -text   => $checkbox_conf->{text},
@@ -126,8 +123,6 @@ sub _generate_checkboxes {
     }
 }
 sub _generate_comboboxes {
-    my ($mw) = @_;
-
     for my $combobox_conf (comboboxes()) {
         my $combobox = $mw->new_ttk__combobox(
             -values  => [ $combobox_conf->{name} ],
@@ -141,8 +136,6 @@ sub _generate_comboboxes {
     }
 }
 sub _generate_labels {
-    my ($mw) = @_;
-
     for my $label_conf (labels()) {
         my $label = $mw->new_label(
             -text => $label_conf->{text},
@@ -164,4 +157,7 @@ sub _parse_config {
     open my $fh, '<', $ui_conf_file or die $!;
     my $json = <$fh>;
     return decode_json $json;
+}
+sub _window_size {
+    return @{ $data->{ui_object}{client_size} };
 }

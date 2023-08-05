@@ -3,6 +3,9 @@
         "client_size": [265, 325],
         "trayicon_text": "berrybrew UI"
     },
+    "ui_simulator": {
+        "font_size": 11
+    },
     "label": {
         "currentPerl": {
             "name": "BBUI",
