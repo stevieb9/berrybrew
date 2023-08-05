@@ -9,11 +9,12 @@ use Exporter qw(import);
 use JSON;
 
 our @EXPORT_OK = qw(
+    check_installer_manifest
     config_read
     config_write
-    check_installer_manifest
-    update_installer_script
     create_installer
+    ui_change_element_block_location
+    update_installer_script
 );
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
