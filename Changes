@@ -6,6 +6,8 @@ Revision history for berrybrew
       config elements from the `data/ui.json` config file (closes #358)
     - Added new UI layout manipulation scripts and tools
     - Updated development documentation for new UI tools
+    - Added `dev/check_manifest.pl`; tool to validate the directory structure
+      contents (closes #361)
 
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`

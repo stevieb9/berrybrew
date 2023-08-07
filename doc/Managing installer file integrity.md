@@ -77,6 +77,9 @@ Simply add the file names to the logical location in the file.
 
 ### File integrity checking procedure
 
+You can manually perform a file integrity check by running the
+`dev/check_manifest.pl` script.
+
 We perform several different checks to ensure consistency with files related to
 the installer. These checks are performed during the build process and are
 managed by the `lib\BuildHelper::check_installer_manifest()` function.

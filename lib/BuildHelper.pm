@@ -6,6 +6,7 @@ use strict;
 # environments have in common.
 
 use Exporter qw(import);
+use File::Find::Rule;
 use JSON;
 
 our @EXPORT_OK = qw(
@@ -55,12 +56,18 @@ sub check_installer_manifest {
         die "check_installer_manifest() requires the installer script sent in";
     }
 
-    print "Validating the installer MANIFEST...\n";
-    
     my $env = $installer_script =~ /staging/
         ? 'staging'
         : 'prod';
-   
+
+    if ($env eq 'staging' && ! -e 'staging') {
+        print "The 'staging' development directory isn't present. Run 'dev\\build_staging.bat...\n\n";
+        print "Can't continue...\n\n";
+        exit;
+    }
+
+    print "Validating the installer MANIFEST...\n";
+
     my $manifest_file = $env eq 'prod'
         ? 'MANIFEST'
         : 'MANIFEST.STAGING';

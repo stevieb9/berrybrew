@@ -42,6 +42,7 @@ These are the files and tools in the `dev\` directory, and their purposes:
 | **build_staging_installer.bat**        | Wrapper script for `_build_staging_installer_helper.pl`                                                                                                                                     |
 | **build_staging_ui.bat**               | Builds the `berrybrew-ui.exe` UI binary. Puts it into `staging\`                                                                                                                            |
 | **build_testing.bat**                  | Sets up and builds the entire unit testing environment. It's located in `testing\`                                                                                                          |
+| **check_manifest.pl**                  | Runs file integrity checks                                                                                                                                                                  | 
 | **create_prod_installer.nsi**          | Production installer configuration script                                                                                                                                                   |
 | **create_staging_installer.nsi**       | Staging installer configuration script                                                                                                                                                      |
 | **generate_github_releases.pl**        | Script that creates the `releases.json` file until Strawberry site is back online                                                                                                           |
@@ -49,9 +50,9 @@ These are the files and tools in the `dev\` directory, and their purposes:
 | **release.pl**                         | Creates a Berrybrew release. See [Create a Release](Create%20a%20release.md)                                                                                                                |
 | **release_cycle.pl**                   | After a release, this script cycles the repository in preparation for the next version. See [Prepare for next version](Create%20a%20release.md#prepare-a-branch-for-the-next-release-cycle) |
 | **release_post.pl**                    | After a release, restores any backed up configuration files (very rarely used)                                                                                                              |
-| **ui_simulator.pl**                    | Non-functional layout simulator of the UI for modifying its config file |
-| **ui_tools\move_element_block.pl**     | Move an element block of the UI up or down |
-| **ui_tools\resize_window.pl**          | Resize the UI main window |
+| **ui_simulator.pl**                    | Non-functional layout simulator of the UI for modifying its config file                                                                                                                     |
+| **ui_tools\move_element_block.pl**     | Move an element block of the UI up or down                                                                                                                                                  |
+| **ui_tools\resize_window.pl**          | Resize the UI main window                                                                                                                                                                   |
 
 ### Berrybrew data directory layout
 
