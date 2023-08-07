@@ -12,7 +12,7 @@ This document contains information on the entire development lifecycle of
 - [Compile Full Build (With Installer)](#development-installer-build)
 - [Compile Binary Only](#berrybrew-binary-only)
 - [Compile API Only](#api-only)
-- [Compile User Interface](#user-interface)
+- [User Interface](#user-interface)
 - [Manually Compile Your Own](#manually-compile-your-own)
 - [Unit Testing](#unit-testing)
 - [Production Build for Testing](#production-build)
@@ -49,6 +49,9 @@ These are the files and tools in the `dev\` directory, and their purposes:
 | **release.pl**                         | Creates a Berrybrew release. See [Create a Release](Create%20a%20release.md)                                                                                                                |
 | **release_cycle.pl**                   | After a release, this script cycles the repository in preparation for the next version. See [Prepare for next version](Create%20a%20release.md#prepare-a-branch-for-the-next-release-cycle) |
 | **release_post.pl**                    | After a release, restores any backed up configuration files (very rarely used)                                                                                                              |
+| **ui_simulator.pl**                    | Non-functional layout simulator of the UI for modifying its config file |
+| **ui_tools\move_element_block.pl**     | Move an element block of the UI up or down |
+| **ui_tools\resize_window.pl**          | Resize the UI main window |
 
 ### Berrybrew data directory layout
 
@@ -120,12 +123,7 @@ and perl instances in `C:\berrybrew-staging\instance`.
 
 ### User Interface
 
-- Run the `dev\build_staging_ui.bat` script, which runs `dev\build_staging.bat`
-compiling the API and the `berrybrew` binary, followed by the UI binary itself.
-
-- Run the `staging\berrybrew-ui.exe` to start the UI. Note that the staging UI
-build will execute out of a command line window, so that you can see the debugging
-output.
+See the [User Interface development](UI.md) document.
 
 ### Manually Compile your Own
 
@@ -142,7 +140,7 @@ See the [Unit Testing](Unit%20testing.md) document.
 ### Production Build
 
 To perform testing with the production aspects of `berrybrew` without creating
-a full blown release, run the `dev\build_prod.bat` script. The production build
+a full-blown release, run the `dev\build_prod.bat` script. The production build
 operates out of the `bin\` directory (ie. `bin\berrybrew.exe`).
 
 The production installer can be built using the `dev\build_prod_installer.bat`

@@ -1,8 +1,11 @@
 Revision history for berrybrew
 
 1.42 UNREL
-    -
-
+    - Added `dev/ui_simulator.pl`, a non-functioning layout simulator which on
+      the click of any button, reloads the window after loading in updated
+      config elements from the `data/ui.json` config file (closes #358)
+    - Added new UI layout manipulation scripts and tools
+    - Updated development documentation for new UI tools
 
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`

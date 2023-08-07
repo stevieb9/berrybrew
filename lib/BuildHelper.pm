@@ -6,15 +6,38 @@ use strict;
 # environments have in common.
 
 use Exporter qw(import);
+use JSON;
 
 our @EXPORT_OK = qw(
     check_installer_manifest
-    update_installer_script
+    config_read
+    config_write
     create_installer
+    ui_change_element_block_location
+    ui_window_size
+    update_installer_script
 );
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
+
+# Common
+
+sub config_read {
+    my ($file) = @_;
+    local $/;
+    open my $fh, '<', $file or die $!;
+    my $json = <$fh>;
+    return decode_json $json;
+}
+sub config_write {
+    my ($file, $data) = @_;
+    open my $wfh, '>', $file or die $!;
+    my $json = JSON->new->pretty->encode($data);
+    print $wfh $json;
+}
+
+# Installer
 
 sub create_installer {
     my ($installer_script) = @_;
@@ -244,6 +267,56 @@ sub update_installer_script {
     close $wfh;
 }
 
+# UI
+
+
+sub ui_change_element_block_location {
+    my ($config, $element_type, $direction, $pixels) = @_;
+
+    # Moves all elements of a certain type up or down
+    # RETURN: The updated configuration data struct
+
+    if (! $config || ! $element_type || ! $direction || ! defined $pixels) {
+        die "Need to send in the config hash, element type, 'up' or 'down' and the number of pixels"; }; if ($direction ne 'up' && $direction ne 'down') {
+        die "\$direction parameter needs to be 'up' or 'down'";
+    }
+    if ($pixels !~ /^\d+$/) {
+        die "\$pixels param needs to be an unsigned integer";
+    }
+
+    my $data = $config->{$element_type};
+
+    for (keys %$data) {
+        if ($direction eq 'up') {
+            $data->{$_}{location}[1] -= $pixels;
+        }
+        else {
+            $data->{$_}{location}[1] += $pixels;
+        }
+    }
+
+    return $config;
+}
+sub ui_window_size {
+    my ($config, $x, $y) = @_;
+
+    if (! $config) {
+        die "Need UI configuration hash as param";
+    }
+
+    if (! defined $x && ! defined $y) {
+        return _ui_current_window_size($config);
+    }
+    else {
+        $config->{ui_object}{client_size}[0] = $x;
+        $config->{ui_object}{client_size}[1] = $y;
+    }
+
+    return $config;
+}
+
+# Private
+
 sub _berrybrew_version {
     open my $fh, '<', 'src/berrybrew.cs' or die $!;
 
@@ -265,4 +338,8 @@ sub _berrybrew_version {
     close $fh;
 
     return $ver;
+}
+sub _ui_current_window_size {
+    my ($config) = @_;
+    return @{ $config->{ui_object}{client_size} };
 }
