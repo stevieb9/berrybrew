@@ -44,6 +44,9 @@ sub help {
 
         If no parameters are sent in, we'll display the current window size.
 
+        if only one of -x or -y are sent in, we'll re-use the existing setting
+        for the missing value.
+
         Parameters:
 
         -x Optional: Number of horizontal pixels
