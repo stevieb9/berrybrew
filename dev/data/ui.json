@@ -1,14 +1,80 @@
 {
-   "checkbox" : {
-      "windowsHomedir" : {
-         "width" : 200,
-         "autosize" : true,
+   "ui_simulator" : {
+      "font_size" : 11
+   },
+   "combobox" : {
+      "perlInstall" : {
+         "index" : 2,
          "location" : [
             10,
-            295
+            65
          ],
-         "text" : "Windows homedir"
+         "size" : [
+            121,
+            30
+         ],
+         "formatting_enabled" : true,
+         "tabindex" : 0,
+         "name" : "perlInstallSelect"
       },
+      "perlRemove" : {
+         "size" : [
+            121,
+            30
+         ],
+         "index" : 4,
+         "location" : [
+            10,
+            125
+         ],
+         "tabindex" : 0,
+         "name" : "perlRemoveSelect",
+         "formatting_enabled" : true
+      },
+      "perlUse" : {
+         "name" : "perlUseSelect",
+         "tabindex" : 0,
+         "formatting_enabled" : true,
+         "size" : [
+            121,
+            30
+         ],
+         "index" : 3,
+         "location" : [
+            10,
+            95
+         ]
+      },
+      "perlSwitch" : {
+         "size" : [
+            121,
+            30
+         ],
+         "name" : "perlSwitchSelect",
+         "tabindex" : 0,
+         "formatting_enabled" : true,
+         "index" : 1,
+         "location" : [
+            10,
+            35
+         ]
+      },
+      "perlClone" : {
+         "index" : 5,
+         "formatting_enabled" : true,
+         "location" : [
+            10,
+            155
+         ],
+         "tabindex" : 0,
+         "size" : [
+            121,
+            30
+         ],
+         "name" : "perlCloneSelect"
+      }
+   },
+   "checkbox" : {
       "powershell" : {
          "width" : 200,
          "location" : [
@@ -18,53 +84,187 @@
          "text" : "Use Powershell",
          "autosize" : true
       },
-      "warnOrphans" : {
-         "width" : 200,
-         "autosize" : true,
-         "text" : "Warn on orphans",
-         "location" : [
-            10,
-            275
-         ]
-      },
       "debug" : {
+         "autosize" : true,
+         "text" : "Debug",
          "location" : [
             10,
             215
          ],
-         "text" : "Debug",
-         "autosize" : true,
          "width" : 200
       },
-      "fileAssoc" : {
+      "windowsHomedir" : {
+         "location" : [
+            10,
+            295
+         ],
          "width" : 200,
          "autosize" : true,
+         "text" : "Windows homedir"
+      },
+      "warnOrphans" : {
+         "location" : [
+            10,
+            275
+         ],
+         "width" : 200,
+         "autosize" : true,
+         "text" : "Warn on orphans"
+      },
+      "fileAssoc" : {
+         "autosize" : true,
+         "text" : "Manage file association",
          "location" : [
             10,
             255
          ],
-         "text" : "Manage file association"
+         "width" : 200
+      }
+   },
+   "button" : {
+      "perlFetch" : {
+         "tabindex" : 1,
+         "name" : "perlFetchButton",
+         "text" : "Fetch",
+         "location" : [
+            10,
+            185
+         ],
+         "index" : 8,
+         "size" : [
+            75,
+            23
+         ]
+      },
+      "perlUse" : {
+         "size" : [
+            75,
+            23
+         ],
+         "index" : 5,
+         "location" : [
+            139,
+            95
+         ],
+         "tabindex" : 1,
+         "text" : "Use",
+         "name" : "perlUseButton"
+      },
+      "perlSnapshot" : {
+         "name" : "perlSwitchButton",
+         "text" : "Snapshot",
+         "tabindex" : 1,
+         "size" : [
+            75,
+            23
+         ],
+         "index" : 3,
+         "location" : [
+            80,
+            185
+         ]
+      },
+      "perlInstall" : {
+         "tabindex" : 1,
+         "text" : "Install",
+         "name" : "perlInstallButton",
+         "size" : [
+            75,
+            23
+         ],
+         "index" : 4,
+         "location" : [
+            139,
+            65
+         ]
+      },
+      "perlRemove" : {
+         "location" : [
+            139,
+            125
+         ],
+         "index" : 6,
+         "tabindex" : 1,
+         "text" : "Remove",
+         "name" : "perlRemoveButton",
+         "size" : [
+            75,
+            23
+         ]
+      },
+      "perlClone" : {
+         "tabindex" : 1,
+         "name" : "perlCloneButton",
+         "text" : "Clone",
+         "size" : [
+            75,
+            23
+         ],
+         "location" : [
+            139,
+            155
+         ],
+         "index" : 7
+      },
+      "perlSwitch" : {
+         "index" : 3,
+         "location" : [
+            139,
+            35
+         ],
+         "size" : [
+            75,
+            23
+         ],
+         "tabindex" : 1,
+         "text" : "Switch",
+         "name" : "perlSwitchButton"
+      },
+      "perlOff" : {
+         "tabindex" : 1,
+         "size" : [
+            35,
+            20
+         ],
+         "text" : "Off",
+         "name" : "perlOffButton",
+         "index" : 2,
+         "location" : [
+            215,
+            10
+         ]
+      },
+      "perlOpen" : {
+         "index" : 1,
+         "location" : [
+            169,
+            10
+         ],
+         "size" : [
+            45,
+            20
+         ],
+         "name" : "perlOpenButton",
+         "text" : "Open",
+         "tabindex" : 1
       }
    },
    "label" : {
       "currentPerl" : {
-         "location" : [
-            10,
-            10
-         ],
+         "autosize" : true,
+         "tabindex" : 0,
          "text" : "Current Perl: None Configured",
-         "index" : 1,
-         "name" : "BBUI",
          "size" : [
             159,
             20
          ],
-         "tabindex" : 0,
-         "autosize" : true
+         "name" : "BBUI",
+         "location" : [
+            10,
+            10
+         ],
+         "index" : 1
       }
-   },
-   "ui_simulator" : {
-      "font_size" : 11
    },
    "ui_object" : {
       "client_size" : [
@@ -72,191 +272,5 @@
          325
       ],
       "trayicon_text" : "berrybrew UI"
-   },
-   "button" : {
-      "perlFetch" : {
-         "index" : 8,
-         "name" : "perlFetchButton",
-         "text" : "Fetch",
-         "location" : [
-            10,
-            185
-         ],
-         "size" : [
-            75,
-            23
-         ],
-         "tabindex" : 1
-      },
-      "perlSwitch" : {
-         "size" : [
-            75,
-            23
-         ],
-         "name" : "perlSwitchButton",
-         "index" : 3,
-         "tabindex" : 1,
-         "location" : [
-            139,
-            35
-         ],
-         "text" : "Switch"
-      },
-      "perlOff" : {
-         "size" : [
-            35,
-            20
-         ],
-         "index" : 2,
-         "name" : "perlOffButton",
-         "location" : [
-            215,
-            10
-         ],
-         "text" : "Off",
-         "tabindex" : 1
-      },
-      "perlOpen" : {
-         "size" : [
-            45,
-            20
-         ],
-         "tabindex" : 1,
-         "index" : 1,
-         "name" : "perlOpenButton",
-         "text" : "Open",
-         "location" : [
-            169,
-            10
-         ]
-      },
-      "perlUse" : {
-         "size" : [
-            75,
-            23
-         ],
-         "location" : [
-            139,
-            95
-         ],
-         "text" : "Use",
-         "index" : 5,
-         "name" : "perlUseButton",
-         "tabindex" : 1
-      },
-      "perlInstall" : {
-         "size" : [
-            75,
-            23
-         ],
-         "text" : "Install",
-         "location" : [
-            139,
-            65
-         ],
-         "index" : 4,
-         "name" : "perlInstallButton",
-         "tabindex" : 1
-      },
-      "perlClone" : {
-         "tabindex" : 1,
-         "text" : "Clone",
-         "location" : [
-            139,
-            155
-         ],
-         "name" : "perlCloneButton",
-         "index" : 7,
-         "size" : [
-            75,
-            23
-         ]
-      },
-      "perlRemove" : {
-         "tabindex" : 1,
-         "name" : "perlRemoveButton",
-         "index" : 6,
-         "location" : [
-            139,
-            125
-         ],
-         "text" : "Remove",
-         "size" : [
-            75,
-            23
-         ]
-      }
-   },
-   "combobox" : {
-      "perlClone" : {
-         "location" : [
-            10,
-            155
-         ],
-         "tabindex" : 0,
-         "name" : "perlCloneSelect",
-         "index" : 5,
-         "size" : [
-            121,
-            30
-         ],
-         "formatting_enabled" : true
-      },
-      "perlInstall" : {
-         "formatting_enabled" : true,
-         "size" : [
-            121,
-            30
-         ],
-         "location" : [
-            10,
-            65
-         ],
-         "tabindex" : 0,
-         "index" : 2,
-         "name" : "perlInstallSelect"
-      },
-      "perlUse" : {
-         "formatting_enabled" : true,
-         "size" : [
-            121,
-            30
-         ],
-         "index" : 3,
-         "name" : "perlUseSelect",
-         "tabindex" : 0,
-         "location" : [
-            10,
-            95
-         ]
-      },
-      "perlSwitch" : {
-         "location" : [
-            10,
-            35
-         ],
-         "name" : "perlSwitchSelect",
-         "index" : 1,
-         "size" : [
-            121,
-            30
-         ],
-         "tabindex" : 0,
-         "formatting_enabled" : true
-      },
-      "perlRemove" : {
-         "size" : [
-            121,
-            30
-         ],
-         "formatting_enabled" : true,
-         "location" : [
-            10,
-            125
-         ],
-         "name" : "perlRemoveSelect",
-         "index" : 4,
-         "tabindex" : 0
-      }
    }
 }
