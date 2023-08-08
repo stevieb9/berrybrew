@@ -18,6 +18,8 @@ public class BBUI : System.Windows.Forms.Form {
     private System.Windows.Forms.ContextMenu contextMenu;
     private System.Windows.Forms.MenuItem rightClickExit;
 
+    private Form snapshotSubCmdForm;
+
     private Label currentPerlLabel;
 
     private Button perlOpenButton;
@@ -40,6 +42,11 @@ public class BBUI : System.Windows.Forms.Form {
 
     private Button perlFetchButton;
 
+    private Button perlSnapshotButton;
+    private ComboBox perlSnapshotCommandSelect;
+    private ComboBox perlSnapshotVersionSelect;
+    private TextBox perlSnapshotNameTextbox;
+    
     private CheckBox fileAssocCheckBox;
     private CheckBox warnOrphansCheckBox;
     private CheckBox debugCheckBox;
@@ -104,6 +111,15 @@ public class BBUI : System.Windows.Forms.Form {
     }
 
     private void InitializeComponents() {
+
+        //TESTING
+        snapshotSubCmdForm = new Form();
+        var perlSnapshotSelect = new System.Windows.Forms.ComboBox();
+        perlSnapshotSelect.DropDownStyle = ComboBoxStyle.DropDownList;
+        perlSnapshotSelect.Items.Add("export");
+        perlSnapshotSelect.Items.Add("import");
+        snapshotSubCmdForm.Controls.Add(perlSnapshotSelect);
+        
         InitializeCurrentPerlLabel();
 
         InitializePerlOpenButton();
@@ -125,6 +141,8 @@ public class BBUI : System.Windows.Forms.Form {
         InitializePerlCloneButton();
 
         InitializePerlFetchButton();
+
+        InitializePerlSnapshotButton();
 
         InitializeFileAssocCheckBox();
         InitializeWarnOrphansCheckBox();
@@ -619,6 +637,38 @@ public class BBUI : System.Windows.Forms.Form {
         MessageBox.Show("Successfully updated the list of available Perls.", "berrybrew fetch");
     }
 
+    // Button - Snapshot
+    private void InitializePerlSnapshotButton() {
+        string name = "perlSnapshot";
+        var data = Conf["button"][name];
+        
+        perlSnapshotButton = new System.Windows.Forms.Button();
+
+        perlSnapshotButton.Name = data["name"];
+        perlSnapshotButton.Text = data["text"];
+        perlSnapshotButton.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlSnapshotButton.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlSnapshotButton.TabIndex = data["tabindex"];
+        perlSnapshotButton.UseVisualStyleBackColor = true;
+
+        perlSnapshotButton.Click += new System.EventHandler(snapshotPerlButton_Click);
+    }
+    private void snapshotPerlButton_Click(object Sender, EventArgs e) {
+//        if (.Text == "") {
+//                    System.Windows.Forms.MessageBox.Show("No Perl selected to clone!");
+//                    return;
+//                }
+
+
+        snapshotSubCmdForm.ShowDialog();
+    }
+
     // Select - Install
     private void InitializePerlInstallSelect() {
         string name = "perlInstall";
@@ -798,6 +848,8 @@ public class BBUI : System.Windows.Forms.Form {
          perlCloneSelect.SelectedIndex = -1;
     }
 
+    // Select - Snapshot Command
+    
     // Tray Icon
     private void trayIcon_Click(object Sender, EventArgs e) {
         DrawComponents();
@@ -837,6 +889,7 @@ public class BBUI : System.Windows.Forms.Form {
         Controls.Add(perlCloneSelect);
 
         Controls.Add(perlFetchButton);
+        Controls.Add(perlSnapshotButton);
 
         DrawComponents();
 
