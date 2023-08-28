@@ -276,7 +276,6 @@ sub update_installer_script {
 
 # UI
 
-
 sub ui_change_element_block_location {
     my ($config, $element_type, $direction, $pixels) = @_;
 

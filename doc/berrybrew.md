@@ -1,6 +1,6 @@
 # berrybrew Usage
 
-### Command List:
+## Command List:
 
 - [debug](#debug)
 - [associate](#associate)
@@ -27,7 +27,7 @@
 - [license](#license)
 - [version](#version)
 
-### Hidden Commands
+## Hidden Commands
 
 Here are [certain features](#hidden-command-list) that may be useful by the developers and
 maintainers of this software. 
@@ -44,13 +44,14 @@ maintainers of this software.
 - [orphans](#orphans)
 - [orphans-ignored](#orphans-ignored)
 - [register-orphans](#register-orphans)
+- [special-instance-dirs](#special-instance-dirs)
 - [test](#test)
 - [trace](#trace)
 - [status](#status)
 
-### Command Usage
+## Command Usage
 
-#### debug
+### debug
 
 Usage:  `berrybrew debug <command> [options]`
 
@@ -58,24 +59,24 @@ This command preceeds all others, and can be used in conjunction with
 all other commands. Depending on the scenario, it will print out verbose
 debugging information.
 
-#### associate
+### associate
 
-    berrybrew associate [command]
+Usage:  berrybrew associate [command]
 
 View, set or revert `.pl` file association on the system.
 
 Note that you can use `assoc` as a short hand alias for `associate`.
 
-##### associate options
+#### associate options
 
     set     - Allow berrybrew to manage the association
     unset   - Revert the association back to what it was previously
        
 If no option is sent in, we'll simply display the current association.
 
-#### available
+### available
 
-    berrybrew available [option]
+Usage:  berrybrew available [option]
 
 Displays a list of available Perl versions, which includes installed and custom
 versions. A shortened example:
@@ -95,9 +96,9 @@ versions. A shortened example:
 If the optional command is set to `all`, we'll list all available versions.
 Otherwise, we list only the most recent point release for each major Perl version.
 
-#### list
+### list
 
-    berrybrew list
+Usage:  berrybrew list
     
 Takes no options, displays a list of the currently installed Perl instances:
 
@@ -105,7 +106,7 @@ Takes no options, displays a list of the currently installed Perl instances:
             5.26.2_64
             5.10.1_32
             
-#### clean
+### clean
 
 Usage:  `berrybrew clean [option]`
 
@@ -113,7 +114,7 @@ By default, if either `help` or a subcommand are not specified, we'll
 simply delete the downloaded Perl installation zip files from the temporary
 directory.
 
-##### clean options
+#### clean options
 
     help        Displays the subcommand help screen
     all         Runs all clean operations
@@ -125,7 +126,7 @@ directory.
     temp        Deletes all Perl installation zip files
     testing     Deletes the developer's testing build directory in the repo
 
-#### clone
+### clone
 
 Usage: `berrybrew clone <version> <name>`
 
@@ -147,12 +148,12 @@ snapshot and re-cloned
 
 - creating build instances for your own modules
 
-#### config
+### config
 
 Takes no arguments. Simply sets up your `PATH` environment variables so that
 `berrybrew` can be found without specifying the full path to the binary.
 
-#### exec
+### exec
 
 Usage:  `berrybrew exec [options] <version> <commands>`
 
@@ -163,17 +164,17 @@ either `tmpl` or `template` in the name.
 Also, by default, we don't execute on custom (cloned) instances. Set
 `custom_exec` to `true` in the config file to `exec` on those as well.
 
-##### exec options:
+#### exec options:
 
     --with version,version,...  Run only on the listed versions
 
-##### exec exit status
+#### exec exit status
 
 The exit status for the `exec` command will be that of the process that you're
 executing. If running with multiple Perls and any of them fail, the status will
 be that of the failed process, regardless if all others succeed.
 
-#### fetch
+### fetch
 
 Usage:  `berrybrew fetch`
 
@@ -181,7 +182,7 @@ Pulls the JSON list of available Strawberry Perl instances from the Strawberry
 website, and puts them into the `data/perls.json` file. Any updates will be
 available immediately with `berrybrew available`.
 
-#### info
+### info
 
 Usage: `berrybrew info <option>`
 
@@ -190,14 +191,14 @@ regarding the `berrybrew` installation itself.
 
 Run `berrybrew info` to get a list of the valid options.
 
-#### install
+### install
 
 Usage:  `berrybrew install <version>`
 
 Installs a single Perl version as seen in `berrybrew available`, and makes it
 available for use.
 
-#### modules
+### modules
 
 Usage: `berrybrew modules <command> [option]`
 
@@ -205,7 +206,7 @@ Allows you the ability to export the currently installed module list
 from one instance of Perl for import and installation on a different
 instance of Perl.
 
-##### modules commands
+#### modules commands
 
     export  Exports a list of all installed modules in the current Perl
     import  Imports a previously exported module list and installs them in the current perl
@@ -215,7 +216,7 @@ instance of Perl that you've previously exported from. If no argument is
 sent in, we'll list the available exports you can choose to install
 from.
 
-#### options
+### options
 
 Usage:  `berrybrew options [option] [value]`
 
@@ -229,7 +230,7 @@ If an `option` is sent in, we'll display the value for that single option.
 If both `option` and `value` are sent in, we'll set the option to the value,
 then display the updated value for that option.
         
-#### off
+### off
 
 Usage:  `berrybrew off`
 
@@ -237,7 +238,7 @@ Disables all `berrybrew` Perl installations. If you have a Strawberry or
 ActiveState system Perl installed, it'll be used until you `berrybrew switch`
 back to a `berrybrew` controlled Perl. 
 
-#### register Usage:  `berrybrew register <directory>` 
+### register Usage:  `berrybrew register <directory>` 
 
 Registers a custom installation within the Perl instance directory that was
 placed there outside of `berrybrew`.
@@ -246,13 +247,13 @@ This allows you to copy in other portable Strawberry Perl instances from
 elsewhere on your system, or from remote systems and have them operate under
 the `berrybrew` umbrella.
 
-#### remove
+### remove
 
 Usage:  `berrybrew remove <version>`
 
 Removes a single version of Perl, as seen in `berrybrew available`.
 
-#### snapshot
+### snapshot
 
 Usage:  `berrybrew snapshot <command> <option> [option]`
 
@@ -266,17 +267,17 @@ Commands:
     export  <instance name> [snapshot name]       Snapshots a Perl instance to a zip archive
     import  <snapshot name> [new instance name]   Imports a previously saved snapshot zip archive
 
-###### export Options
+#### export Options
 
     instance name:  Mandatory. The name of the existing instance to snapshot
     snapshot name:  Optional.  Snapshot name. If not supplied it will be "instance name.yyyyMMDDmmss"
 
-###### import Options
+#### import Options
 
     snapshot name:      Mandatory. The name of the snapshot to import (get with `berrybrew snapshot list`)
     new instance name:  Optional.  This will be the name of the imported instance. If not supplied, will be the same as `snapshot name` (with any timestamp removed) 
 
-#### switch
+### switch
 
 Usage:  `berrybrew switch <version> [quick]`
 
@@ -289,13 +290,13 @@ a new console window isn't required. WARNING: Some binaries and other features
 may not work correctly using this method. If you have problems, simply run
 `berrybrew-refresh`.
 
-#### unconfig
+### unconfig
 
 Usage:  `berrybrew unconfig`
 
 Removes berrybrew's binary directory from the `PATH` environment variable.
 
-#### use
+### use
 
 Usage:  `berrybrew use [options] version[,version[,...]]`
 
@@ -309,7 +310,7 @@ berrybrew.  Inside each subshell, the `PATH` will be changed to point to
 the selected version of perl, but when it returns to the shell that ran
 berrybrew, the `PATH` will return to its previous setting.
 
-##### use options:
+#### use options:
 
     berrybrew use --win version[,version[,...]]
     berrybrew use --window version[,version[,...]]
@@ -320,7 +321,7 @@ for each version of perl selected.  Type `exit` to close the spawned
 environment.  After spawning one or more windows, the window from which
 berrybrew was run is still available for use.
 
-#### virtual
+### virtual
 
 Usage: `berrybrew virtual <desired_instance_name>`
 
@@ -333,31 +334,31 @@ The most common use case is so that you can have a berrybrew perl as your
 standard perl, but you can `use` the external (eg: system) perl temporarily
 without having to use `off` to access it.
 
-#### help
+### help
 
 Usage:  `berrybrew help`
 
 Displays a summarized view of the available commands.
 
-#### license
+### license
 
 Prints the `berrybrew` license to `STDOUT`.
 
-#### version
+### version
 
 Usage:  `berrybrew version`
 
 Displays the current version of the `berrybrew.exe` binary and `bbapi.dll`
 library.
 
-### Hidden Command List
+## Hidden Command List
 
-#### archives
+### archives
 
 Prints the list of all Perl instance archives (ie. zip files) that have
 already been downloaded and that are present for use.
 
-#### currentperl
+### currentperl
 
 This feature simply fetches the Perl instance that's currently in use,
 prints out its name, and exits. It will not display anything if there's no
@@ -365,21 +366,21 @@ Perl currently in use.
 
 Used primarily for certain unit tests.
 
-#### download
+### download
 
 If a single perl version is sent in as an argument, we'll download that
 particular version. If `all` is sent in, we'll download all available
 perl versions (limited to the most recent point release of each major
 release).
 
-#### error
+### error
 
 Usage: `berrybrew error <ErrNum>`
 
 Translates an error code and displays the name of the error, where `ErrNum`
 is the error number.
 
-#### error-codes
+### error-codes
 
 Usage: `berrybrew error-codes`
 
@@ -393,7 +394,7 @@ Example:
     180 - OPTION_INVALID_ERROR
     -1  - GENERIC_ERROR
 
-#### exit
+### exit
 
 Usage: `berrybrew exit 0`
 
@@ -404,43 +405,44 @@ To get the error name displayed, run the command with the `status` command:
 ```
   berrybrew status exit -5
 ```
-#### info
+
+### info
 
 Displays paths and other information regarding the `berrybrew` installation
 itself.
 
-#### options-update
+### options-update
 
 Checks the base distribution's configuration file, and if there are any newly
 added directives, we'll insert them into the registry. Used for upgrades and
 testing.
 
-#### options-update-force
+### options-update-force
 
 Loads all configuration options from the configuration file into the registry.
 Be warned that this will overwrite all changes that were previously changed
 within the registry.
 
-#### orphans
+### orphans
 
 Displays all orphaned Perl instances that haven't been registered with
 `berrybrew`.
 
-#### orphans-ignored
+### orphans-ignored
 
 Displays the list of directories in the Perl instance directory that we will
 not classify as orphans. These are system directories.
 
-#### register-orphans
+### register-orphans
 
 This will register all orphaned Perl instances at once.
 
-#### special-instance-dirs
+### special-instance-dirs
 
 Displays the list of special directories we won't touch within the
 `instance_dir` (perl instance directory).
 
-#### test
+### test
 
 This feature should only be used by developers of berrybrew.
 
@@ -462,7 +464,7 @@ Examples:
 Currently, it's only used in the `t/99_clean.t` test to strip off
 unneeded path elements for a couple of specific tests.
 
-#### trace
+### trace
 
 Forces the printing of the full stack trace to `STDERR` upon program exit. We
 also display the exit code, and its name.
@@ -480,7 +482,7 @@ Examples:
 
     `berrybrew debug trace remove 5.10.1_32`
 
-#### status
+### status
 
 Displays the exit code information on exit.
 

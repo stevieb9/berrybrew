@@ -86,8 +86,8 @@ correctly without overwriting the currently-installed production installation.
 This is a must for testing out new features to ensure they work correctly prior
 to running the [unit test](Unit%20testing.md) suite.
 
-- Run the `dev\build_staging.bat` script, which compiles the binary, library and UI and
-places the new build within a newly-created `build` directory within your
+- Run the `dev\build_staging.bat` script, which compiles the binary, library and
+UI and places the new build within a newly-created `build` directory within your
 repository directory
 
 Use the new development build:
@@ -163,7 +163,9 @@ See the [Updating releases.json](Update%20releases%20JSON.md) document.
 
 ### Managing Installer File Integrity
 
-See [Managing installer file integrity](Managing%20installer%20file%20integrity.md) document.
+See 
+[Managing installer file integrity](Managing%20installer%20file%20integrity.md)
+document.
 
 ### Adding to and Modifying the Codebase
 
