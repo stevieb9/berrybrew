@@ -13,6 +13,8 @@ The code for the `berrybrew-ui.exe` is in `src/berrybrew-ui.cs`.
 Each class link will direct you to a list of that class' methods. Each method
 link in the respective class' list will direct you to that method's definition.
 
+### Classes and files
+
 | Class |File|Namespace|Description
 |---|---|---|---|
 [Berrybrew](#berrybrew-class)            | src/**berrybrew.cs** | **BerryBrew** | Core API

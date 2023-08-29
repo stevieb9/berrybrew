@@ -173,6 +173,13 @@ This section lists the main typical changes that occur when developing
 `berrybrew`, each links to its own dedicated documentation that outlines the
 steps and procedures to complete the tasks.
 
+Docs are available for the [Berrybrew API](Berrybrew%20API.md) and the
+[`berrybrew` binary](berrybrew.md).
+
+See the [Classes and files](Berrybrew%20API.md#classes-and-files) section of the
+[Berrybrew API](Berrybrew%20API.md) document to get an understanding of the
+source files.
+
 | Task                                                                          | Description                |
 |-------------------------------------------------------------------------------|----------------------------|
 | [Add a new class (API)](Add%20a%20new%20class.md)                             | Add a new class to the API | 
