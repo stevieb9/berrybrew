@@ -11,7 +11,6 @@
 - [config](#config)
 - [exec](#exec)
 - [fetch](#fetch)
-- [info](#info)
 - [install](#install)
 - [modules](#modules)
 - [options](#options)
@@ -181,15 +180,6 @@ Usage:  `berrybrew fetch`
 Pulls the JSON list of available Strawberry Perl instances from the Strawberry
 website, and puts them into the `data/perls.json` file. Any updates will be
 available immediately with `berrybrew available`.
-
-### info
-
-Usage: `berrybrew info <option>`
-
-Retrieves and displays specific implementation and installation details
-regarding the `berrybrew` installation itself.
-
-Run `berrybrew info` to get a list of the valid options.
 
 ### install
 
@@ -396,20 +386,24 @@ Example:
 
 ### exit
 
-Usage: `berrybrew exit 0`
+Usage: `berrybrew exit <exitCodeNum>`
 
 Tests the exit mechanism. Requires an `Int32` as an argument.
 
 To get the error name displayed, run the command with the `status` command:
 
 ```
-  berrybrew status exit -5
+  berrybrew status exit <exitCodeNum>
 ```
 
 ### info
 
-Displays paths and other information regarding the `berrybrew` installation
-itself.
+Usage: `berrybrew info [option]`
+
+Retrieves and displays specific implementation and installation details
+regarding the `berrybrew` installation itself.
+
+Run `berrybrew info` to get a list of the valid options.
 
 ### options-update
 
