@@ -28,7 +28,7 @@ documentation.
 - [Commands](#commands)
 - [Examples](#examples)
 - [Update Perls Available](#update-perls-available)
-- [Configure Perl Instance Directory](#configure-root-directory)
+- [Configure Perl Instance Directory](#configure-instance-directory)
 - [Requirements](#requirements)
 - [Troubleshooting](#troubleshooting)
 - [Development, Build, Test and Release](#development-build-test-and-release)
@@ -161,7 +161,7 @@ Use the `Fetch` button in the UI, or, at the command line, use `berrybrew fetch`
 to retrieve the most recent availability list from Strawberry Perl. If any new or
 changed versions are found, we'll update the local `perls.json` file with them.
 
-## Configure Root Directory
+## Configure Instance Directory
 
 If using the [installer](download/berrybrewInstaller.exe?raw=true "berrybrew MSI installer")
 to install from, you'll have the opportunity to configure this option during
@@ -170,7 +170,7 @@ install, and nothing further is required.
 Otherwise, follow these directions:
 
 By default, we manage Perls out of the `C:\berrybrew` directory. To 
-change this, modify the `root_dir` value in the `data\config.json` file.
+change this, modify the `instance_dir` value in the `data\config.json` file.
 Use double-backslashes (`\\`) as the path separators. 
 
 WARNING: At this time, it is highly advised not to change this after 
@@ -180,7 +180,7 @@ If you choose to ignore this, follow this procedure:
 
 - create a new directory in the file system to house the Perl instances
 
-- run `berrybrew options root_dir PATH`, where `PATH` is the full path to the
+- run `berrybrew options instance_dir PATH`, where `PATH` is the full path to the
 directory you'd like to store Perls in
 
 - run `berrybrew options temp_dir PATH`, where `PATH` is the full path to the

@@ -10,6 +10,8 @@ Revision history for berrybrew
       contents (closes #361)
     - Cleanup of berrybrew command doc
     - Documentation fixes (closes #365)
+    - Change `root_dir` to `instance_dir` in README's "Configure Root Directory"
+      section (closes #363)
 
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`
