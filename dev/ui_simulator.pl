@@ -11,7 +11,7 @@ use Tkx;
 
 
 # NOTE: If a UTF error occurs reading the JSON, open the conf
-# file up in vi and execute: ':set nobomb'
+# file up in vi and execute: ':set nobomb' (remove BOM)
 
 # NOTE: All buttons have a command that will destroy the existing
 # window and recreate it from scratch. This allows us to auto-refresh

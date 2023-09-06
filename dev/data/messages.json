@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "label": "unconfig",
 
@@ -100,7 +100,6 @@
       "\nregister command requires a directory as an argument."
     ]
   },
-
   {
     "label": "switch_ver_required",
     "content": [
@@ -312,10 +311,10 @@
       "   import Options",
       "",
       "     snapshot name:      Mandatory. The name of the snapshot to import",
-      "     new instance name:  Optional.  This will be the name of the imported instance", 
+      "     new instance name:  Optional.  This will be the name of the imported instance",
       "                         If not supplied, will be the same as snapshot name (less timestamp)"
     ]
-  }, 
+  },
   {
     "label": "info_option_required",
 

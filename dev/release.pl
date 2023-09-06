@@ -288,6 +288,45 @@ sub update_contributing {
         }
     }
 }
+sub update_messages {
+    print "\nupdating messages.json with new Copyright year...\n";
+
+    my $file = 'dev/data/messages.json';
+    my $data;
+
+    {
+        local $/;
+        open my $fh, '<', $file or die "Can't open $file for reading: $!";
+        my $json = <$fh>;
+        $data = decode_json($json);
+        close $fh;
+    }
+
+    my $current_year = (localtime)[5] + 1900;
+    my $file_updated = 0;
+
+    for my $section (@$data) {
+        if ($section->{label} eq 'license') {
+            my $contents = $section->{content};
+
+            for my $line (@$contents) {
+                if ($line =~ /2016-(\d{4})/) {
+                    my $copyright_year = $1;
+
+                    if ($copyright_year != $current_year) {
+                        $file_updated = 1;
+                        $line =~ s/$copyright_year/$current_year/;
+                    }
+                }
+            }
+        }
+    }
+
+    if ($file_updated) {
+        open my $fh, '>', $file or die "Can't open $file for writing: $!";
+        print $fh JSON->pretty->encode($data);
+    }
+}
 sub update_docs {
     print "\nlooking for docs that need copyright updated...\n";
     
