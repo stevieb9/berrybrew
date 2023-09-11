@@ -7,7 +7,9 @@ use strict;
 
 use Exporter qw(import);
 use File::Find::Rule;
-use JSON;
+use JSON::PP;
+use Monkey::Patch qw(patch_package);
+use Tie::IxHash;
 
 our @EXPORT_OK = qw(
     check_installer_manifest
@@ -25,6 +27,13 @@ our %EXPORT_TAGS = (
 # Common
 
 sub config_read {
+    my $json_ordered_handle = patch_package 'JSON::PP' => 'object' => sub {
+        my $orig = shift;
+        my %obj;
+        tie %obj, 'Tie::IxHash' or die "tie(\%obj, 'Tie::IxHash') failed!\n";
+        $orig->(\%obj)
+    };
+
     my ($file) = @_;
     local $/;
     open my $fh, '<', $file or die $!;
@@ -34,7 +43,7 @@ sub config_read {
 sub config_write {
     my ($file, $data) = @_;
     open my $wfh, '>', $file or die $!;
-    my $json = JSON->new->pretty->encode($data);
+    my $json = JSON::PP->new->pretty->encode($data);
     print $wfh $json;
 }
 

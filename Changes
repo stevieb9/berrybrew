@@ -14,6 +14,8 @@ Revision history for berrybrew
       section (closes #363)
     - Release script now updates the copyright year in the messages.json
       'license' section (closes #367)
+    - BuildHelper config file functions monkeypatched to keep the order of
+      the entries in the JSON files
 
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`
