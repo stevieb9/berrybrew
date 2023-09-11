@@ -4,12 +4,10 @@
          265,
          325
       ],
-      "trayicon_text" : "berrybrew UI",
-      "index": 0
+      "trayicon_text" : "berrybrew UI"
    },
    "ui_simulator" : {
-      "font_size" : 11,
-      "index": 0
+      "font_size" : 11
    },
    "button" : {
       "perlFetch" : {
@@ -20,7 +18,6 @@
             10,
             185
          ],
-         "index" : 8,
          "size" : [
             75,
             23
@@ -31,7 +28,6 @@
             75,
             23
          ],
-         "index" : 5,
          "location" : [
             139,
             95
@@ -48,7 +44,6 @@
             75,
             23
          ],
-         "index" : 3,
          "location" : [
             80,
             185
@@ -62,7 +57,6 @@
             75,
             23
          ],
-         "index" : 4,
          "location" : [
             139,
             65
@@ -73,7 +67,6 @@
             139,
             125
          ],
-         "index" : 6,
          "tabindex" : 1,
          "text" : "Remove",
          "name" : "perlRemoveButton",
@@ -93,11 +86,9 @@
          "location" : [
             139,
             155
-         ],
-         "index" : 7
+         ]
       },
       "perlSwitch" : {
-         "index" : 3,
          "location" : [
             139,
             35
@@ -118,14 +109,12 @@
          ],
          "text" : "Off",
          "name" : "perlOffButton",
-         "index" : 2,
          "location" : [
             215,
             10
          ]
       },
       "perlOpen" : {
-         "index" : 1,
          "location" : [
             169,
             10
@@ -188,7 +177,6 @@
    },
    "combobox" : {
       "perlInstall" : {
-         "index" : 2,
          "location" : [
             10,
             65
@@ -206,7 +194,6 @@
             121,
             30
          ],
-         "index" : 4,
          "location" : [
             10,
             125
@@ -223,7 +210,6 @@
             121,
             30
          ],
-         "index" : 3,
          "location" : [
             10,
             95
@@ -237,14 +223,12 @@
          "name" : "perlSwitchSelect",
          "tabindex" : 0,
          "formatting_enabled" : true,
-         "index" : 1,
          "location" : [
             10,
             35
          ]
       },
       "perlClone" : {
-         "index" : 5,
          "formatting_enabled" : true,
          "location" : [
             10,
@@ -271,8 +255,7 @@
          "location" : [
             10,
             10
-         ],
-         "index" : 2
+         ]
       }
    }
 }
