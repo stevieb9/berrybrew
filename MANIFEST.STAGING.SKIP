@@ -2,6 +2,7 @@
 .idea/
 bak/
 bin/
+cpanfile
 data/
 dev/
 doc/Add a new API method.md

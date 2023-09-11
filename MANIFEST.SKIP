@@ -1,6 +1,7 @@
 .git/
 .idea/
 bak/
+cpanfile
 data/perls_custom.json
 data/perls_virtual.json
 dev/
