@@ -6,7 +6,6 @@ use lib "$RealBin/../lib";
 
 use BuildHelper qw(:all);
 use Data::Dumper;
-use JSON;
 use Tkx;
 
 
