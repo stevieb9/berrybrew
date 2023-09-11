@@ -27,6 +27,8 @@ our %EXPORT_TAGS = (
 # Common
 
 sub config_read {
+    my ($file) = @_;
+
     my $json_ordered_handle = patch_package 'JSON::PP' => 'object' => sub {
         my $orig = shift;
         my %obj;
@@ -34,7 +36,6 @@ sub config_read {
         $orig->(\%obj)
     };
 
-    my ($file) = @_;
     local $/;
     open my $fh, '<', $file or die $!;
     my $json = <$fh>;

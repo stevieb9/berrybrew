@@ -13,7 +13,6 @@ use Digest::SHA qw(sha1);
 use Dist::Mgr qw(changes_date);
 use File::Copy;
 use File::Find::Rule;
-use JSON::PP;
 use Test::More;
 
 use constant {
@@ -292,15 +291,7 @@ sub update_messages {
     print "\nupdating messages.json with new Copyright year...\n";
 
     my $file = 'dev/data/messages.json';
-    my $data;
-
-    {
-        local $/;
-        open my $fh, '<', $file or die "Can't open $file for reading: $!";
-        my $json = <$fh>;
-        $data = decode_json($json);
-        close $fh;
-    }
+    my $data = config_read($file);
 
     my $current_year = (localtime)[5] + 1900;
     my $file_updated = 0;
@@ -323,8 +314,7 @@ sub update_messages {
     }
 
     if ($file_updated) {
-        open my $fh, '>', $file or die "Can't open $file for writing: $!";
-        print $fh JSON->pretty->encode($data);
+        config_write($file, $data);
     }
 }
 sub update_docs {
