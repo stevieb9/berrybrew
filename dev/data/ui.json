@@ -10,17 +10,56 @@
       "font_size" : 11
    },
    "button" : {
-      "perlFetch" : {
-         "tabindex" : 1,
-         "name" : "perlFetchButton",
-         "text" : "Fetch",
+      "perlOpen" : {
          "location" : [
-            10,
-            185
+            169,
+            10
+         ],
+         "size" : [
+            45,
+            20
+         ],
+         "name" : "perlOpenButton",
+         "text" : "Open",
+         "tabindex" : 1
+      },
+      "perlOff" : {
+         "tabindex" : 1,
+         "size" : [
+            35,
+            20
+         ],
+         "text" : "Off",
+         "name" : "perlOffButton",
+         "location" : [
+            215,
+            10
+         ]
+      },
+      "perlSwitch" : {
+         "location" : [
+            139,
+            35
          ],
          "size" : [
             75,
             23
+         ],
+         "tabindex" : 1,
+         "text" : "Switch",
+         "name" : "perlSwitchButton"
+      },
+      "perlInstall" : {
+         "tabindex" : 1,
+         "text" : "Install",
+         "name" : "perlInstallButton",
+         "size" : [
+            75,
+            23
+         ],
+         "location" : [
+            139,
+            65
          ]
       },
       "perlUse" : {
@@ -35,32 +74,6 @@
          "tabindex" : 1,
          "text" : "Use",
          "name" : "perlUseButton"
-      },
-      "perlSnapshot" : {
-         "name" : "perlSwitchButton",
-         "text" : "Snapshot",
-         "tabindex" : 1,
-         "size" : [
-            75,
-            23
-         ],
-         "location" : [
-            80,
-            185
-         ]
-      },
-      "perlInstall" : {
-         "tabindex" : 1,
-         "text" : "Install",
-         "name" : "perlInstallButton",
-         "size" : [
-            75,
-            23
-         ],
-         "location" : [
-            139,
-            65
-         ]
       },
       "perlRemove" : {
          "location" : [
@@ -88,56 +101,34 @@
             155
          ]
       },
-      "perlSwitch" : {
+      "perlFetch" : {
+         "tabindex" : 1,
+         "name" : "perlFetchButton",
+         "text" : "Fetch",
          "location" : [
-            139,
-            35
+            10,
+            185
          ],
          "size" : [
             75,
             23
-         ],
-         "tabindex" : 1,
-         "text" : "Switch",
-         "name" : "perlSwitchButton"
-      },
-      "perlOff" : {
-         "tabindex" : 1,
-         "size" : [
-            35,
-            20
-         ],
-         "text" : "Off",
-         "name" : "perlOffButton",
-         "location" : [
-            215,
-            10
          ]
       },
-      "perlOpen" : {
-         "location" : [
-            169,
-            10
-         ],
+      "perlSnapshot" : {
+         "name" : "perlSwitchButton",
+         "text" : "Snapshot",
+         "tabindex" : 1,
          "size" : [
-            45,
-            20
+            75,
+            23
          ],
-         "name" : "perlOpenButton",
-         "text" : "Open",
-         "tabindex" : 1
+         "location" : [
+            80,
+            185
+         ]
       }
    },
    "checkbox" : {
-      "powershell" : {
-         "width" : 200,
-         "location" : [
-            10,
-            235
-         ],
-         "text" : "Use Powershell",
-         "autosize" : true
-      },
       "debug" : {
          "autosize" : true,
          "text" : "Debug",
@@ -147,14 +138,23 @@
          ],
          "width" : 200
       },
-      "windowsHomedir" : {
+      "powershell" : {
+         "width" : 200,
          "location" : [
             10,
-            295
+            235
          ],
-         "width" : 200,
+         "text" : "Use Powershell",
+         "autosize" : true
+      },
+      "fileAssoc" : {
          "autosize" : true,
-         "text" : "Windows homedir"
+         "text" : "Manage file association",
+         "location" : [
+            10,
+            255
+         ],
+         "width" : 200
       },
       "warnOrphans" : {
          "location" : [
@@ -165,17 +165,30 @@
          "autosize" : true,
          "text" : "Warn on orphans"
       },
-      "fileAssoc" : {
-         "autosize" : true,
-         "text" : "Manage file association",
+      "windowsHomedir" : {
          "location" : [
             10,
-            255
+            295
          ],
-         "width" : 200
+         "width" : 200,
+         "autosize" : true,
+         "text" : "Windows homedir"
       }
    },
    "combobox" : {
+      "perlSwitch" : {
+         "size" : [
+            121,
+            30
+         ],
+         "name" : "perlSwitchSelect",
+         "tabindex" : 0,
+         "formatting_enabled" : true,
+         "location" : [
+            10,
+            35
+         ]
+      },
       "perlInstall" : {
          "location" : [
             10,
@@ -188,19 +201,6 @@
          "formatting_enabled" : true,
          "tabindex" : 0,
          "name" : "perlInstallSelect"
-      },
-      "perlRemove" : {
-         "size" : [
-            121,
-            30
-         ],
-         "location" : [
-            10,
-            125
-         ],
-         "tabindex" : 0,
-         "name" : "perlRemoveSelect",
-         "formatting_enabled" : true
       },
       "perlUse" : {
          "name" : "perlUseSelect",
@@ -215,18 +215,18 @@
             95
          ]
       },
-      "perlSwitch" : {
+      "perlRemove" : {
          "size" : [
             121,
             30
          ],
-         "name" : "perlSwitchSelect",
-         "tabindex" : 0,
-         "formatting_enabled" : true,
          "location" : [
             10,
-            35
-         ]
+            125
+         ],
+         "tabindex" : 0,
+         "name" : "perlRemoveSelect",
+         "formatting_enabled" : true
       },
       "perlClone" : {
          "formatting_enabled" : true,
