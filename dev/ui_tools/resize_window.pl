@@ -30,17 +30,21 @@ if ($help) {
 $x //= $x_current;
 $y //= $y_current;
 
-if ($x != $x_current && $y != $y_current) {
+if ($x != $x_current || $y != $y_current) {
     $data = BuildHelper::ui_window_size($data, $x, $y);
     BuildHelper::config_write($ui_conf_file, $data);
     print "\nUpdated the '$ui_conf_file' with the updated main window size...\n\n";
 }
 else {
-    print "\nNo new coordinates sent in. Existing window is '$x' x '$y' pixels...\n\n";
+    print "\nNo new coordinates sent in. Existing window is '$x' x '$y' pixels...\n";
+
+    help();
 }
 
 sub help {
     print qq{
+
+        USAGE:
 
         If no parameters are sent in, we'll display the current window size.
 
