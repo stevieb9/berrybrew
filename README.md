@@ -35,7 +35,6 @@ documentation.
 - [Documentation](#other-documentation)
 - [Hidden Commands](#hidden-commands)
 - [Developed Using](#developed-using)
-- [Caveats](#caveats)
 - [License](#license)
 - [Version](#version)
 
@@ -69,32 +68,7 @@ installation.
 
 ## Uninstall
 
-If you used the self-extracting installer, simply run the uninstaller from
-either `Add/Remove Programs` in the Control Panel, or the `uninst.exe`
-uninstaller program located in the installation directory.
-
-If you installed via any other method:
-
-First, run the `berrybrew associate unset` if you're managing the `.pl` file
-association with `berrybrew`.
-
-Then, run the `berrybrew unconfig` command which removes the `PATH` environment
-variables for any in-use Perl installation, and then removes `berrybrew` from
-the `PATH` as well.
-
-If you wish to delete the actual installation:
-
-- Stop the UI if it's running (right-click the System Tray Icon, and click `Exit`)
-
-- Remove the Perl installation root directory (by default `C:\berrybrew`) 
-
-- Remove the original download directory
-
-- Remove the `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\berrybrew` registry key
-
-- If you've installed the UI, remove the 
-`Computer\HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Current Version\Run\BerrybrewUI`
-  registry value
+See the [Uninstall](doc/Uninstall.md) documentation.
 
 ## Configuration
 
@@ -143,8 +117,7 @@ to 64-bit (ie. `_64`) if this suffix is omitted.
 
 ## Examples
 
-See the [berrybrew](doc/berrybrew.md)
-document for usage examples.
+See the [berrybrew](doc/berrybrew.md) document for usage examples.
 
 ## Upgrading
 
@@ -152,8 +125,9 @@ Using the [installer](download/berrybrewInstaller.exe?raw=true "berrybrew MSI in
 is the best and safest way to upgrade your `berrybrew`. You can stop reading here
 if you use the installer to install `berrybrew`.
 
-Doing a straight `git pull` will overwrite your configuration files, so
-back them up first (see [Caveats](#caveats)).
+As of version 1.42, a registry export of berrybrew's configuration will be
+saved to the `backup` directory within the installation directory. You can use
+these settings if anything you didn't want overwritten was.
 
 ## Update Perls Available
 
@@ -240,21 +214,6 @@ in the [berrybrew](doc/berrybrew.md)
 document.
 
 You can also get a list of them by running the hidden `berrybrew hidden` command.
-
-## CAVEATS
-
-- When using `git pull` to do an upgrade, your configuration files will
-be overwritten with the defaults. If you have any customizations, make a
-backup of the `data` directory before upgrade, then copy the files back
-to their original location. Note that you may have to manually add any
-new config directives into the original config files. The 
-`perls_custom.json` file used for custom Perl installations (clones) and the
-`perls_virtual.json` file used for virtual Perl installations will never be
-overwritten, and this warning does not apply for them.
-
-- At this time, `berrybrew` requires Administrative privileges to
-operate correctly. This is due to the way Windows forces the System 
-`PATH` to take precedence over User `PATH`.
 
 ## Developed Using
 
