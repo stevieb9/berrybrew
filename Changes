@@ -19,6 +19,8 @@ Revision history for berrybrew
     - Added a `cpanfile` to keep track of needed dependencies (omits those used
       in testing)
     - More documentation fixes (work on #368)
+    - When using `OptionsUpdate()`, we now print out more detailed information
+      as to what's being done
 
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`

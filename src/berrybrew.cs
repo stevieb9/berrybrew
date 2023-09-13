@@ -1658,12 +1658,20 @@ namespace BerryBrew {
                         Console.WriteLine("DEBUG: {0}: {1}", confKey, jsonConf[confKey]);
                     }
                     if (force) {
-                        Console.WriteLine("Adding {0} to the registry configuration", confKey);
+                        Console.WriteLine(
+                            "Force adding value {0} to key {1} to the registry configuration",
+                            jsonConf[confKey],
+                            confKey
+                        );
                         regKey.SetValue(confKey, jsonConf[confKey]);
                     }
                     else {
                         if (! regValues.Contains(confKey)) {
-                            Console.WriteLine("Adding {0} to the registry configuration", confKey);
+                            Console.WriteLine(
+                                "Adding key {0} with value {1} to the registry configuration",
+                                confKey,
+                                jsonConf[confKey]
+                            );
                             regKey.SetValue(confKey, jsonConf[confKey]);
                         }
                     }
