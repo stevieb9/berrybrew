@@ -15,19 +15,21 @@ you've already installed any instances of Perl. This feature is
 incomplete, and `PATH` and other things don't get properly reset yet.
 If you choose to ignore this, follow this procedure:
 
-- create a new directory in the file system to house the Perl instances
+- Create a new directory in the file system to house the Perl instances
 
-- run `berrybrew options instance_dir PATH`, where `PATH` is the full path to the
+- Run `berrybrew options instance_dir PATH`, where `PATH` is the full path to the
   directory you'd like to store Perls in
 
-- run `berrybrew options temp_dir PATH`, where `PATH` is the full path to the
+- Run `berrybrew options temp_dir PATH`, where `PATH` is the full path to the
   temporary storage area. Typically, this is a directory inside of the `root_dir`
   you set above
 
-- run `berrybrew off`, to flush the `PATH` environment variables
+- Run `berrybrew off`, to flush the `PATH` environment variables
 
-- move all Perl installations from the old path to the new one
+- Move all Perl installations from the old path to the new one
 
-- remove the old directory
+- Remove the old directory
 
-- run `berrybrew switch $version` to set things back up
+- Run `berrybrew switch $version` to set things back up
+
+&copy; 2016-2023 by Steve Bertrand
