@@ -68,6 +68,9 @@ Section "-MainSection" SEC_MAIN
   File "..\staging\ICSharpCode.SharpZipLib.dll"
   File "..\staging\Newtonsoft.Json.dll"
 
+  SetOutPath "$INSTDIR\backup"
+  File "..\staging\backup\README.txt"
+
   SetOutPath "$INSTDIR\data"
   File "..\staging\data\config.json"
   File "..\staging\data\messages.json"
@@ -274,6 +277,7 @@ Section Uninstall
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\inc\berrybrew.ico"
+  Delete "$INSTDIR\backup\*.*"
   Delete "$INSTDIR\data\perls.json"
   Delete "$INSTDIR\data\messages.json"
   Delete "$INSTDIR\data\config.json"
@@ -305,6 +309,7 @@ Section Uninstall
 
   RMDir "$INSTDIR\bin"
   RMDir "$INSTDIR\inc"
+  RMDir "$INSTDIR\backup"
   RMDir "$INSTDIR\data"
   RMDir "$INSTDIR\doc"
   RMDir "$INSTDIR"

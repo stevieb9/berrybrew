@@ -521,7 +521,7 @@ that install all the listed modules within the exported file.
     public void Info(string want)
 
         argument:   want
-        value:      One of "archive_path", "bin_path", "root_path" or "install_path"
+        value: One of "install_path", "backup_path", "config_path", "bin_path", "storage_path", "instance_path", "archive_path", "snapshot_path"
 
 Writes to the console a string containing the required information.
 

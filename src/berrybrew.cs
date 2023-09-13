@@ -116,6 +116,7 @@ namespace BerryBrew {
         public string installPath;
         public string storagePath;
         public string instancePath;
+        private string backupPath;
         private string configPath;
         private string snapshotPath;
         public string downloadURL;
@@ -136,6 +137,7 @@ namespace BerryBrew {
             // Initialize configuration
 
             installPath     = Regex.Replace(binPath, @"bin", "");
+            backupPath      = installPath + @"/backup/";
             configPath      = installPath + @"/data/";
             registrySubKey  = @"SOFTWARE\berrybrew";
 
@@ -1309,6 +1311,7 @@ namespace BerryBrew {
         public void Info(string want) {
             List <string> options = new List<string>() {
                 "install_path", 
+                "backup_path",
                 "config_path",
                 "bin_path", 
                 "storage_path",
@@ -1328,6 +1331,9 @@ namespace BerryBrew {
             switch (want) {
                 case "install_path":
                     Console.WriteLine("\n\t{0}", installPath);
+                    break;
+                case "backup_path":
+                    Console.WriteLine("\n\t{0}", backupPath);
                     break;
                 case "config_path":
                     Console.WriteLine("\n\t{0}", configPath);
@@ -1658,6 +1664,19 @@ namespace BerryBrew {
                         Console.WriteLine("DEBUG: {0}: {1}", confKey, jsonConf[confKey]);
                     }
                     if (force) {
+                        // Back up the registry
+                        
+                        String timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                        string registrySubKeyBackup = registrySubKey + @"-" + Version() + @"-" + timeStamp;
+
+                        Console.WriteLine(
+                            "Creating backup of registry configuration to {0}",
+                            registrySubKeyBackup
+                        );
+                        // HERE
+                        Registry.ExportRegistryTree()
+                        Exit(0);
+                        
                         Console.WriteLine(
                             "Force adding value {0} to key {1} to the registry configuration",
                             jsonConf[confKey],
