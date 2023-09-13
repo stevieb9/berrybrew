@@ -23,7 +23,13 @@ Revision history for berrybrew
       as to what's being done
     - Added 'backupPath'; adds a new backup directory in the installation dir to
       be used for backing up the registry when doing upgrades
-      
+    - Added `backup` directory. It's stored in the main install directory. Used
+      to house automated berrybrew backups (eg. registry)
+    - Added `RegistryBackup()` to automate registry exports
+    - `options-update-force` and `OptionsUpdate(true))` will now perform a full
+      registry export to a backup file using `RegistryBackup()`
+    - Added `registry-export` hidden command
+    
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`
       and added `special-instance-dirs` hidden command (closes #353)

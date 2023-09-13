@@ -1665,31 +1665,7 @@ namespace BerryBrew {
 
                 if (force) {
                     // Back up the registry
-
-                    String timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-                    string registryBackupName = environmentName + @"-" + Version() + @"-" + timeStamp;
-                    string registryBackupFile = backupPath + registryBackupName + @".reg";
-                    string registryKey = @"HKEY_LOCAL_MACHINE\" + registrySubKey;
-
-                    Console.WriteLine(
-                        "Creating backup of registry configuration '{0}' to file '{1}'",
-                        registryKey,
-                        registryBackupFile
-                    );
-
-                    try {
-                        RegistryBackup(registryKey, registryBackupFile);
-                    }
-                    catch (SecurityException err) {
-                        Console.Error.WriteLine(
-                            "\nPerforming a registry backup (via options-update-force) requires Admin privileges"
-                        );
-                        if (Debug) {
-                            Console.Error.WriteLine("DEBUG: {0}", err);
-                        }
-
-                        Exit((int) ErrorCodes.ADMIN_REGISTRY_WRITE);
-                    }
+                    RegistryBackup();
                 }
 
                 foreach (string confKey in validOptions) {
@@ -1753,9 +1729,20 @@ namespace BerryBrew {
             return process;
         }
 
-        private void RegistryBackup(string registryKey, string backupFile) {
-            string path = "\"" + backupFile + "\"";
+        public void RegistryBackup() {
+            String timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            string registryBackupName = environmentName + @"-" + Version() + @"-" + timeStamp;
+            string registryBackupFile = backupPath + registryBackupName + @".reg";
+            string registryKey = @"HKEY_LOCAL_MACHINE\" + registrySubKey;
+
+            Console.WriteLine(
+                "Creating backup of registry configuration '{0}' to file '{1}'",
+                registryKey,
+                registryBackupFile
+            );
+
             string key = "\"" + registryKey + "\"";
+            string path = "\"" + registryBackupFile + "\"";
 
             var proc = new Process();
 
@@ -1767,6 +1754,16 @@ namespace BerryBrew {
                 if (proc != null) {
                     proc.WaitForExit();
                 }
+            }
+            catch (SecurityException err) {
+                Console.Error.WriteLine(
+                    "\nPerforming a registry backup requires Admin privileges"
+                );
+                if (Debug) {
+                    Console.Error.WriteLine("DEBUG: {0}", err);
+                }
+
+                Exit((int) ErrorCodes.ADMIN_REGISTRY_WRITE);
             }
             finally {
                 if (proc != null) {

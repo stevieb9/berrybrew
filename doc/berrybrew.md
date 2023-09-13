@@ -437,6 +437,13 @@ not classify as orphans. These are system directories.
 
 This will register all orphaned Perl instances at once.
 
+### registry-export
+
+Exports the berrybrew's registry tree.
+
+The export will be located in the `$INSTALLDIR\backup` directory, with a file
+name in the form `$instance_name-$version-$timestamp.reg`.
+
 ### special-instance-dirs
 
 Displays the list of special directories we won't touch within the

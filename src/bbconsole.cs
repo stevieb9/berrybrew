@@ -416,6 +416,11 @@ namespace berrybrew {
                     bb.Exit(0);
                     break;
 
+                case "registry-export":
+                    bb.RegistryBackup();
+                    bb.Exit(0);
+                    break;
+                
                 case "remove":
                     if (args.Length == 1) {
                         bb.Message.Print("remove_ver_required");
