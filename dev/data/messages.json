@@ -283,13 +283,14 @@
       "",
       "   berrybrew 'clean' subcommands:",
       "",
-      "   all     Clean everything",
-      "   dev     Deletes all files/directories related to dev perl instances",
-      "   module  Deletes the exported module list directory",
-      "   orphan  Deletes all orphaned Perl installations",
-      "   staging Deletes the staging build directory",
-      "   temp    Removes all downloaded Perl installation files",
-      "   testing Removes the testing build directory"
+      "   all      Clean everything",
+      "   dev      Deletes all files/directories related to dev perl instances",
+      "   module   Deletes the exported module list directory",
+      "   orphan   Deletes all orphaned Perl installations",
+      "   registry Deletes the exported registry backups",
+      "   staging  Deletes the staging build directory",
+      "   temp     Removes all downloaded Perl installation files",
+      "   testing  Removes the testing build directory"
     ]
   },
   {

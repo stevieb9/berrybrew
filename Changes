@@ -29,7 +29,9 @@ Revision history for berrybrew
     - `options-update-force` and `OptionsUpdate(true))` will now perform a full
       registry export to a backup file using `RegistryBackup()`
     - Added `registry-export` hidden command
-    
+    - Added `clean registry` with `CleanRegistry()`; removes all previously
+      exported registry backups
+      
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`
       and added `special-instance-dirs` hidden command (closes #353)

@@ -419,14 +419,15 @@ namespace BerryBrew {
                     CleanDev();
                     CleanStaging();
                     CleanTesting();
+                    CleanRegistry();
                     break;
                 
                 case "dev":
                     cleansed = CleanDev();
                     Console.WriteLine(
                         cleansed
-                        ? "\nremoved the staging and testing instance_dir directories"
-                        : "\nan error has occured removing dev directories"
+                        ? "\nRemoved the staging and testing instance_dir directories"
+                        : "\nAn error has occured removing dev directories"
                     );
                     break;
 
@@ -434,45 +435,54 @@ namespace BerryBrew {
                     cleansed = CleanModules();
                     Console.WriteLine(
                         cleansed
-                        ? "\ncleaned the module list storage directory"
-                        : "\nno module lists saved to remove"
+                        ? "\nCleaned the module list storage directory"
+                        : "\nNo module lists saved to remove"
                     );
                     break;
 
                 case "orphan":
                     cleansed = CleanOrphan();
                     if (! cleansed) {
-                        Console.WriteLine("\nno orphaned perls to remove");
+                        Console.WriteLine("\nNo orphaned perls to remove");
                     }
+                    break;
+
+                case "registry":
+                    cleansed = CleanRegistry();
+                    Console.WriteLine(
+                        cleansed
+                        ? "\nRemoved the registry export backups"
+                        : "\nAn error has occured removing the registry export backups" 
+                    );
                     break;
 
                 case "staging":
                     cleansed = CleanStaging();
                     Console.WriteLine(
                         cleansed
-                        ? "\nremoved the staging build directory"
-                        : "\nan error has occured removing staging build directory"
+                        ? "\nRemoved the staging build directory"
+                        : "\nAn error has occured removing staging build directory"
                     );
                     break;
 
                 case "temp":
                     cleansed = CleanTemp();
-                    if (cleansed) {
-                        Console.WriteLine("\nremoved all files from {0} temp dir", instancePath);
-                    }
-                    else {
-                        Console.WriteLine("\nno archived perl installation files to remove");
-                    }
+                    Console.WriteLine(
+                        cleansed
+                        ? "\nRemoved all files from " + instancePath + " temp dir"
+                        : "\nNo archived perl installation files to remove"
+                    );
                     break;
 
                 case "testing":
                     cleansed = CleanTesting();
                     Console.WriteLine(
                         cleansed
-                        ? "\nremoved the testing build directory"
-                        : "\nan error has occured removing testing build directory"
+                        ? "\nRemoved the testing build directory"
+                        : "\nAn error has occured removing testing build directory"
                     );
-                    break;               
+                    break;
+
             }
         }
 
@@ -574,6 +584,25 @@ namespace BerryBrew {
             }
 
             return orphans.Count > 0;
+        }
+
+        private bool CleanRegistry() {
+            if (! Directory.Exists(backupPath)) {
+                return true;
+            }
+
+            string[] files = System.IO.Directory.GetFiles(backupPath, "*.reg");
+
+            foreach (string file in files) {
+                if (Debug) {
+                    Console.WriteLine("Deleting {0}", file);
+                }
+                System.IO.File.Delete(file);
+            } 
+
+            files = System.IO.Directory.GetFiles(backupPath, "*.reg");
+
+            return files.Count() == 0 ? true : false;
         }
 
         private bool CleanStaging() {

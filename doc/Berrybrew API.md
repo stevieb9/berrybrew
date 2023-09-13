@@ -50,8 +50,9 @@ The `Berrybrew` class is the base of the system.
 [Clean](#clean) | **public**                                                        | Stages removal of temp files and orphaned Perls                                                                                
 [CleanDev](#cleandev) | private                                                           | Remove the developer's `staging` and `testing` **data** directories                                                            
 [CleanModules](#cleanmodules) | private                                                           | Removes the directory where we store exported module lists                                                                     
-[CleanOrphan](#cleanorphan)| private                                                           | Removes all orphaned Perls                                                                                                     
-[CleanStaging](#cleanstaging) | private                                                           | Remove the developer's `staging` build directory                                                                               
+[CleanOrphan](#cleanorphan)| private                                                           | Removes all orphaned Perls
+[CleanRegistry](#cleanregistry)| private                                                           | Removes all exported registry backups
+[CleanStaging](#cleanstaging) | private                                                           | Remove the developer's `staging` build directory
 [CleanTemp](#cleantemp)| private                                                           | Removes temporary files                                                                                                        
 [CleanTesting](#cleanTesting) | private                                                           | Remove the developer's `testing` build directory                                                                               
 [Clone](#clone)| **public**                                                        | Copies an installed Perl to a new name                                                                                         
@@ -306,6 +307,14 @@ Removes all directories found in the Perl installation directory that aren't
 associated with any registered Perl instances.
 
 Returns `true` if any orphans were found/deleted, `false` if not.
+
+#### CleanRegistry
+
+    private bool CleanRegistry()
+
+Removes all exported registry backups from the `backup` directory.
+
+Returns `true` if all files were removed successfully.
 
 #### CleanStaging
 
