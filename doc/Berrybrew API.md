@@ -78,6 +78,7 @@ The `Berrybrew` class is the base of the system.
 [OptionsUpdate](#optionsupdate)| **public**                                                        | Update registry configuration with new directives                                                                              
 [OrphanedPerls](#orphanedperls)| **public**                                                        | Displays the list of orphaned perls                                                                                            
 [ProcessCreate](#processcreate)| **public**                                                        | Creates and returns a Windows cmd process                                                                                      
+[RegistryBackup](#registrybackup)| private | Exports a registry key tree to a file |
 [SnapshotCompress](#snapshotcompress) | **public**                                                        | Zips and saves an archive of a Perl instance                                                                                   
 [SnapshotExtract](#snapshotextract) | **public**                                                        | Unzips, installs and registered a previously saved snapshot                                                                    
 [SnapshotInit](#snapshotinit)| private                                                           | Checks for the snapshot storage directory, creates if necessary                                                                
@@ -665,6 +666,19 @@ Prints to `STDOUT` the list of Perl instances that aren't registered with
         return:     A System.Diagnostics.Process object
 
 Builds and returns a process ready to be modified or have `Start()` called on it.
+
+#### RegistryBackup
+
+    private void RegistryBackup(string registryKey, string backupFile)
+
+        argument:   registryKey
+        value:      String containing the entire path to the key to export
+
+        argument:   backupFile
+        vallue:     String, the full path and name to the file to export to
+
+Exports the given registry key to a `.reg` file. `registryKey` must have the
+full registry path, eg. `HKEY_LOCAL_MACHINE\SOFTWARE\berrybrew`.
 
 #### SnapshotCompress
 

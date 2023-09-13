@@ -416,8 +416,12 @@ testing.
 ### options-update-force
 
 Loads all configuration options from the configuration file into the registry.
+
 Be warned that this will overwrite all changes that were previously changed
 within the registry.
+
+We will perform a full berrybrew instance registry export to `$INSTALLDIR\backup`.
+The filename will be in the form `$instance_name-$version-$timestamp.reg`.
 
 ### orphans
 

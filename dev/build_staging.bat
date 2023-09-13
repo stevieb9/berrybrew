@@ -1,6 +1,7 @@
 @echo off
 mkdir staging
 mkdir staging\data
+mkdir staging\backup
 
 copy dev\data\*.json staging\data
 

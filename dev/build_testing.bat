@@ -4,6 +4,7 @@ set BB_RUN_MODE=testing
 
 mkdir testing
 mkdir testing\data
+mkdir testing\backup
 
 copy dev\data\*.json testing\data
 

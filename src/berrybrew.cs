@@ -109,8 +109,9 @@ namespace BerryBrew {
 
         public readonly OrderedDictionary _perls = new OrderedDictionary();
 
+        private string environmentName;
         private string registrySubKey;
-
+        
         private string binPath = AssemblyDirectory;
         public string archivePath;
         public string installPath;
@@ -137,8 +138,9 @@ namespace BerryBrew {
             // Initialize configuration
 
             installPath     = Regex.Replace(binPath, @"bin", "");
-            backupPath      = installPath + @"/backup/";
-            configPath      = installPath + @"/data/";
+            backupPath      = installPath + @"\backup\";
+            configPath      = installPath + @"\data\";
+            environmentName = @"berrybrew";
             registrySubKey  = @"SOFTWARE\berrybrew";
 
             validOptions = new List<string>{
@@ -163,10 +165,12 @@ namespace BerryBrew {
             if (binPath.Contains("testing")) {
                 // Console.WriteLine("IN TEST MODE");
                 registrySubKey += "-testing";
+                environmentName += "-testing";
             }
             else if (binPath.Contains("staging")) {
                 Console.WriteLine("IN DEV MODE");
                 registrySubKey += "-staging";
+                environmentName += "-staging";
             }
 
             // set the SSL security protocol
@@ -1659,24 +1663,40 @@ namespace BerryBrew {
 
                 string[] regValues = regKey.GetValueNames();
 
+                if (force) {
+                    // Back up the registry
+
+                    String timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                    string registryBackupName = environmentName + @"-" + Version() + @"-" + timeStamp;
+                    string registryBackupFile = backupPath + registryBackupName + @".reg";
+                    string registryKey = @"HKEY_LOCAL_MACHINE\" + registrySubKey;
+
+                    Console.WriteLine(
+                        "Creating backup of registry configuration '{0}' to file '{1}'",
+                        registryKey,
+                        registryBackupFile
+                    );
+
+                    try {
+                        RegistryBackup(registryKey, registryBackupFile);
+                    }
+                    catch (SecurityException err) {
+                        Console.Error.WriteLine(
+                            "\nPerforming a registry backup (via options-update-force) requires Admin privileges"
+                        );
+                        if (Debug) {
+                            Console.Error.WriteLine("DEBUG: {0}", err);
+                        }
+
+                        Exit((int) ErrorCodes.ADMIN_REGISTRY_WRITE);
+                    }
+                }
+
                 foreach (string confKey in validOptions) {
                     if (Debug) {
                         Console.WriteLine("DEBUG: {0}: {1}", confKey, jsonConf[confKey]);
                     }
                     if (force) {
-                        // Back up the registry
-                        
-                        String timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-                        string registrySubKeyBackup = registrySubKey + @"-" + Version() + @"-" + timeStamp;
-
-                        Console.WriteLine(
-                            "Creating backup of registry configuration to {0}",
-                            registrySubKeyBackup
-                        );
-                        // HERE
-                        Registry.ExportRegistryTree()
-                        Exit(0);
-                        
                         Console.WriteLine(
                             "Force adding value {0} to key {1} to the registry configuration",
                             jsonConf[confKey],
@@ -1687,7 +1707,7 @@ namespace BerryBrew {
                     else {
                         if (! regValues.Contains(confKey)) {
                             Console.WriteLine(
-                                "Adding key {0} with value {1} to the registry configuration",
+                                "Adding new key {0} with value {1} to the registry configuration",
                                 confKey,
                                 jsonConf[confKey]
                             );
@@ -1731,6 +1751,28 @@ namespace BerryBrew {
             process.StartInfo.RedirectStandardError = true;
             process.StartInfo.UseShellExecute = false;
             return process;
+        }
+
+        private void RegistryBackup(string registryKey, string backupFile) {
+            string path = "\"" + backupFile + "\"";
+            string key = "\"" + registryKey + "\"";
+
+            var proc = new Process();
+
+            try {
+                proc.StartInfo.FileName = "regedit.exe";
+                proc.StartInfo.UseShellExecute = false;
+                proc = Process.Start("regedit.exe", "/e " + path + " " + key + "");
+
+                if (proc != null) {
+                    proc.WaitForExit();
+                }
+            }
+            finally {
+                if (proc != null) {
+                    proc.Dispose();
+                }
+            }
         }
         
         public void SnapshotCompress(string instanceName, string snapshotName = null) {
