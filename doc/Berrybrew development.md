@@ -130,10 +130,6 @@ See the [User Interface development](UI.md) document.
 
 See the [Manually Compile Your Own](Compile%20your%20own.md) document.
 
-### Create a Release
-
-See the [Create a Release](Create%20a%20release.md) document.
-
 ### Unit Testing
 
 See the [Unit Testing](Unit%20testing.md) document.

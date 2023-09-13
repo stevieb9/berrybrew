@@ -228,7 +228,9 @@ Disables all `berrybrew` Perl installations. If you have a Strawberry or
 ActiveState system Perl installed, it'll be used until you `berrybrew switch`
 back to a `berrybrew` controlled Perl. 
 
-### register Usage:  `berrybrew register <directory>` 
+### register
+
+Usage:  `berrybrew register <directory>` 
 
 Registers a custom installation within the Perl instance directory that was
 placed there outside of `berrybrew`.
