@@ -44,6 +44,7 @@ public class BBUI : System.Windows.Forms.Form {
 
     private Button perlSnapshotButton;
     private ComboBox perlSnapshotCommandSelect;
+    private Button perlSnapshotOperationButton;
     private ComboBox perlSnapshotVersionSelect;
     private TextBox perlSnapshotNameTextbox;
     
@@ -68,6 +69,7 @@ public class BBUI : System.Windows.Forms.Form {
             (int) Conf["ui_object"]["client_size"][0], 
             (int) Conf["ui_object"]["client_size"][1]
         );
+
         Text = "berrybrew UI";
        
         components = new System.ComponentModel.Container();
@@ -113,15 +115,18 @@ public class BBUI : System.Windows.Forms.Form {
     private void InitializeComponents() {
 
         //TESTING
+        InitializePerlSnapshotOperationButton();
         snapshotSubCmdForm = new Form();
-        var perlSnapshotSelect = new System.Windows.Forms.ComboBox();
-        perlSnapshotSelect.DropDownStyle = ComboBoxStyle.DropDownList;
-        perlSnapshotSelect.Items.Add("export");
-        perlSnapshotSelect.Items.Add("import");
-        snapshotSubCmdForm.Controls.Add(perlSnapshotSelect);
-        
-        InitializeCurrentPerlLabel();
+        perlSnapshotCommandSelect = new System.Windows.Forms.ComboBox();
+        perlSnapshotCommandSelect.DropDownStyle = ComboBoxStyle.DropDownList;
+        perlSnapshotCommandSelect.Items.Add("export");
+        perlSnapshotCommandSelect.Items.Add("import");
+        snapshotSubCmdForm.Controls.Add(perlSnapshotCommandSelect);
+        snapshotSubCmdForm.Controls.Add(perlSnapshotOperationButton);
 
+       
+        InitializeCurrentPerlLabel();
+        
         InitializePerlOpenButton();
         InitializePerlOffButton();
 
@@ -151,6 +156,49 @@ public class BBUI : System.Windows.Forms.Form {
         InitializeWindowsHomedirCheckBox();
     }
 
+    //TESTING
+    private void InitializePerlSnapshotOperationButton() {
+        string name = "perlSnapshotOperation";
+        var data = Conf["button"][name];
+        
+        perlSnapshotOperationButton = new System.Windows.Forms.Button();
+
+        perlSnapshotOperationButton.Name = data["name"];
+        perlSnapshotOperationButton.Text = data["text"];
+        perlSnapshotOperationButton.Location = new System.Drawing.Point(
+            (int) data["location"][0],
+            (int) data["location"][1]
+        );
+        perlSnapshotOperationButton.Size = new System.Drawing.Size(
+            (int) data["size"][0],
+            (int) data["size"][1]
+        );
+        perlSnapshotOperationButton.TabIndex = data["tabindex"];
+        perlSnapshotOperationButton.UseVisualStyleBackColor = true;
+
+        perlSnapshotOperationButton.Click += new System.EventHandler(snapshotOperationPerlButton_Click);
+    }
+    private void snapshotOperationPerlButton_Click(object Sender, EventArgs e) {
+        // MessageBox.Show(((Button)Sender).Name + " was pressed!");
+        string perlInUse = bb.PerlOp.PerlInUse().Name;
+
+        if (perlSnapshotCommandSelect.Text == "import") {
+            System.Windows.Forms.MessageBox.Show("Import");
+        }
+        else if (perlSnapshotCommandSelect.Text == "export") {
+            System.Windows.Forms.MessageBox.Show("Export");
+        }
+        else {
+            System.Windows.Forms.MessageBox.Show("No command selected");
+            return;
+        }
+        
+        snapshotSubCmdForm.Close();
+        WindowState = FormWindowState.Minimized;
+        Hide();
+        DrawComponents();
+    }   
+     
     // Label - Current Perl
     private void InitializeCurrentPerlLabel() {
         string name = "currentPerl";

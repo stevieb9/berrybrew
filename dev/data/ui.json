@@ -115,8 +115,22 @@
          ]
       },
       "perlSnapshot" : {
-         "name" : "perlSwitchButton",
-         "text" : "Snapshot",
+         "name": "perlSnapshotButton",
+         "text": "Snapshot",
+         "tabindex": 1,
+         "size": [
+            75,
+            23
+         ],
+         "index": 3,
+         "location": [
+            80,
+            185
+         ]
+      },
+      "perlSnapshotOperation" : {
+         "name" : "perlSnapshotOperationButton",
+         "text" : "SnapshotOperation",
          "tabindex" : 1,
          "size" : [
             75,
