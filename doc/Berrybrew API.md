@@ -729,8 +729,9 @@ Displays the names of all previously saved snapshots.
 
         returns:  Dictionary<string, bool>; Key is the dir name, bool is always true
 
-Returns a list of directories within the Perl instance directory (`instance_dir`) that
-should never be written to, deleted or seen as orphaned perls.
+Returns a list of directories within the Perl instance directory
+(`instance_dir`) that should never be written to, deleted or seen as orphaned
+perls.
 
 #### Switch
 
