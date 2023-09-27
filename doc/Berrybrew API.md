@@ -215,7 +215,7 @@ downloaded and saved in the `temp` directory.
          
 Displays the names of the versions of Perl that are available to `berrybrew`,
 as found in `this._perls`, where `this._perls` is a
-`OrderedDictionary<string name, Berrybrew.StrawberryPerl>`.
+`OrderedDictionary<string name, Berrybrew.PerlInstance.StrawberryPerl>`.
 
 If `allPerls` is set to `true`, we will list all available Perls. Otherwise,
 we display only the most recent point release of each major version.
