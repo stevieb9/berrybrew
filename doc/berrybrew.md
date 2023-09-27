@@ -60,7 +60,7 @@ debugging information.
 
 ### associate
 
-Usage:  berrybrew associate [command]
+Usage:  `berrybrew associate [command]`
 
 View, set or revert `.pl` file association on the system.
 
@@ -75,7 +75,7 @@ If no option is sent in, we'll simply display the current association.
 
 ### available
 
-Usage:  berrybrew available [option]
+Usage:  `berrybrew available [option]`
 
 Displays a list of available Perl versions, which includes installed and custom
 versions. A shortened example:
@@ -97,7 +97,7 @@ Otherwise, we list only the most recent point release for each major Perl versio
 
 ### list
 
-Usage:  berrybrew list
+Usage:  `berrybrew list`
     
 Takes no options, displays a list of the currently installed Perl instances:
 
@@ -451,12 +451,12 @@ Displays the list of special directories we won't touch within the
 
 ### test
 
-This feature should only be used by developers of berrybrew.
+This feature should only be used by developers of berrybrew. It doesn't do
+anything outside of the context of specific unit tests.
 
-Like the `debug` feature, I've added a new `test` argument. It must
-follow `berrybrew` and preceed all further operations. To include the
-`debug` argument as well, specify it first, then include `test`, then
-your command and any options:
+This command must follow `berrybrew` and preceed all further operations. To
+include the `debug` argument as well, specify it first, then include `test`,
+then your command and any options:
 
 Examples: 
 
