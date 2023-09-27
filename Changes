@@ -31,7 +31,8 @@ Revision history for berrybrew
     - Added `registry-export` hidden command
     - Added `clean registry` with `CleanRegistry()`; removes all previously
       exported registry backups
-      
+    - Numerous markdown fixes in API doc, particularly table formatting issues
+
 1.41    2023-08-03
     - Renamed `PerlOp.PerlOrphansIgnore()` to `Berrybrew.SpecialInstanceDirectories()`
       and added `special-instance-dirs` hidden command (closes #353)
